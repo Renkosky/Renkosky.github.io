@@ -247,6 +247,135 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2017/04/17/计算机网络-用ping制造ip分片/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/17/计算机网络-用ping制造ip分片/" itemprop="url">
+                  计算机网络-用ping制造ip分片
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T17:25:06+08:00">
+                2017-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="任务：用ping命令制造ip分片并用wireshark捕获"><a href="#任务：用ping命令制造ip分片并用wireshark捕获" class="headerlink" title="任务：用ping命令制造ip分片并用wireshark捕获"></a>任务：用ping命令制造ip分片并用wireshark捕获</h1><h2 id="什么叫分片？"><a href="#什么叫分片？" class="headerlink" title="什么叫分片？"></a>什么叫分片？</h2><p>在ip层下面的每一种数据链路协议都规定了一个数据帧中的数据字段的最大长度，这称为最大长度单元<strong><em>MTU</em></strong>。当一个IP数据报封装成链路层的帧时，其总长度一定要小于下面数据链路层的MTU。其中，以太网的的MTU值为1500。因此我们就发一个2000长度的数据报.</p>
+<p><code>ping 114.114.114.114 -l 1600//发送一个长度为1600字节的数据报</code></p>
+<p>因为数据报长度太长的话很容易被屏蔽所以这里就用1600，比1500多一点点</p>
+<p>在wireshark输入过滤条件 ip.dst==114.114.114.114</p>
+<p><img src="http://oogbwnwu9.bkt.clouddn.com/ip.png" alt="数据报"></p>
+<p>Mf值为1说明有分片</p>
+<p><img src="http://oogbwnwu9.bkt.clouddn.com/fenpian.png" alt="分片"></p>
+<p>可以看到数据报</p>
+<p>简书地址：<a href="http://www.jianshu.com/u/ebcfbdeab432" target="_blank" rel="external">http://www.jianshu.com/u/ebcfbdeab432</a> 同步更新哦~</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://renkosky.me/2017/04/15/记一次windows中Hexo博客的搭建-伪教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -658,7 +787,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -671,7 +800,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
