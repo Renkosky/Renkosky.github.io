@@ -327,7 +327,7 @@
             <h1 id="任务：用ping命令制造ip分片并用wireshark捕获"><a href="#任务：用ping命令制造ip分片并用wireshark捕获" class="headerlink" title="任务：用ping命令制造ip分片并用wireshark捕获"></a>任务：用ping命令制造ip分片并用wireshark捕获</h1><h2 id="什么叫分片？"><a href="#什么叫分片？" class="headerlink" title="什么叫分片？"></a>什么叫分片？</h2><p>在ip层下面的每一种数据链路协议都规定了一个数据帧中的数据字段的最大长度，这称为最大长度单元<strong><em>MTU</em></strong>。当一个IP数据报封装成链路层的帧时，其总长度一定要小于下面数据链路层的MTU。其中，以太网的的MTU值为1500。因此我们就发一个2000长度的数据报.</p>
 <p><code>ping 114.114.114.114 -l 1600//发送一个长度为1600字节的数据报</code></p>
 <p>因为数据报长度太长的话很容易被屏蔽所以这里就用1600，比1500多一点点</p>
-<p>在wireshark输入过滤条件 ip.dst==114.114.114.114</p>
+<p>在wireshark输入过滤条件 <code>ip.dst==114.114.114.114</code></p>
 <p><img src="http://oogbwnwu9.bkt.clouddn.com/ip.png" alt="数据报"></p>
 <p>Mf值为1说明有分片</p>
 <p><img src="http://oogbwnwu9.bkt.clouddn.com/fenpian.png" alt="分片"></p>
