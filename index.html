@@ -297,100 +297,14 @@
 
       
         
-          
-            <p>前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。</p>
-<p><img src="http://oogbwnwu9.bkt.clouddn.com/codewars.png" alt=""></p>
-<h3 id="1-Your-order，please"><a href="#1-Your-order，please" class="headerlink" title="1. Your order，please."></a>1. Your order，please.</h3><p>给定一段顺序错误的字符串，字符串里每个单词都包含一个数字代表着这个单词在句子中正确的位置，返回排序后的字符串。</p>
-<blockquote>
-<p>function order(words){<br> return words.split(‘ ‘).sort(function(a, b){<br>    return a.match(/\d/) - b.match(/\d/);<br> }).join(‘ ‘);</p>
-</blockquote>
-<p><code>sort(function(a,b){  return a - b;})</code>sort中的比较函数，可以决定在排好序的数组中两个参数的位置。如果要a在前则要返回一个负数(升序排列)，反之要返回正数(降序排列)。</p>
-<h3 id="2-Where-my-anagrams-at"><a href="#2-Where-my-anagrams-at" class="headerlink" title="2.Where my anagrams at?"></a>2.Where my anagrams at?</h3><p>在数组中找到一个元素，拥有和字符串完全相同的字母。</p>
-<blockquote>
-<p>function anagrams(word, words) {<br>  word = word.split(‘’).sort().join(‘’);<br>  return words.filter(function(v) {return word == v.split(‘’).sort().join(‘’);});<br>}</p>
-</blockquote>
-<p><code>filter()</code>返回一个满足回调函数的新数组</p>
-<h3 id="3-Vasya-Clerk"><a href="#3-Vasya-Clerk" class="headerlink" title="3.Vasya - Clerk"></a>3.Vasya - Clerk</h3><p>一队人在电影院门口排队买票，他们手上有25,50,100三种纸币，你作为售票员一开始没有钱。写一个函数判断是否你有足够的零钱把票卖给每一个人<br>挺有意思的一道题，要记住你只有三种面值的纸币，所以需要把你收到的25 50 100纸币的个数分别记录。</p>
-<blockquote>
-<p></p><p>function tickets(peopleInLine) {<br>var bills = [0, 0, 0]<br>for (var i = 0; i &lt; peopleInLine.length; i++) {<br>switch (peopleInLine[i]) {<br>case 25:<br>bills[0]++<br>break<br>case 50:<br>bills[0]–<br>bills[1]++<br>break<br>case 100:<br>bills[1] ? bills[1]– : bills[0] -= 2<br>bills[0]–<br>break<br>}<br>if (bills[0] &lt; 0) {<br>return ‘NO’<br>}<br>}<br>return ‘YES’</p>
-</blockquote>
-<h3 id="4-Triple-trouble"><a href="#4-Triple-trouble" class="headerlink" title="4.Triple trouble"></a>4.Triple trouble</h3><blockquote>
-<p>function tripledouble(num1, num2) {<br>  for (let i = 0; i &lt; 10; i++) {<br>    if (new RegExp(`${i}{3}`).test(num1) &amp;&amp; new RegExp(`${i}{2}`).test(num2)) {<br>      return 1;<br>    }<br>  }<br>  return 0;<br>}</p>
-</blockquote>
-<p>给你两串数字，若满足：第一串中有一个数字出现三次，第二串中那个同样的数字也出现了两次就返回true</p>
-<blockquote>
-<p>RegExp(`${i}{3}`)`</p>
-</blockquote>
-<p>RegExp(“n{X}”) n{X,} 量词匹配包含 X 个 n 的序列的字符串。<br>es6表达式模板字符串（template string）是增强版的字符串，用反引号（`）标识。它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量(感觉有点像JSP里的EL表达式呢)。</p>
-<p>test() 方法用于检测一个字符串是否匹配某个模式.如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false。<br>所以这里的语句 <code>RegExp(\</code>${i}{3}`).test(num1)就是在num1这个字符串中看是否有3个i(1-10)~</p>
-<h3 id="5-Equal-Sides-Of-An-Array"><a href="#5-Equal-Sides-Of-An-Array" class="headerlink" title="5.Equal Sides Of An Array"></a>5.Equal Sides Of An Array</h3><p>找出使数组呈现中心对称的那个元素([1,2,3,4,3,2,1] =&gt; 4)</p>
-<p>中心对称的那个元素左右两边必然相等，利用这个特点就可以了。</p>
-<blockquote>
-<p>function findEvenIndex(arr){<br>  for(var i=1; i<arr.length-1; i++)="" {="" if(arr.slice(0,="" i).reduce((a,="" b)="">  a+b) === arr.slice(i+1).reduce((a, b) =&gt;  a+b)) {<br>      return i;<br>    }<br>  }<br>  return -1;<br>}</arr.length-1;></p>
-</blockquote>
-<p><code>arrayObject.slice(start,end) 方法可从已有的数组中返回选定的元素。</code></p>
-<p><code>arr.reduce([callback, initialValue])</code></p>
-<p>reduce() 方法接收一个函数作为累加器（accumulator），数组中的每个值（从左到右）开始缩减，最终为一个值。<br>参数</p>
-<p>callback 执行数组中每个值的函数，包含四个参数:<br><code>previousValue</code><br>上一次调用回调函数返回的值，或者是提供的初始值（initialValue）<br><code>currentValue</code><br>数组中当前被处理的元素<br><code>currentIndex</code><br>当前被处理元素在数组中的索引, 即currentValue的索引.如果有initialValue初始值, 从0开始.如果没有从1开始.<br><code>array</code><br>调用 reduce 的数组<br><code>initialValue</code><br>可选参数, 作为第一次调用 callback 的第一个参数。</p>
-<p><code>reduce</code> 为数组中的每一个元素依次执行回调函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：</p>
-<p>previousValu 上一次值<br>currentValue 当前值<br>currentIndex 当前值的索引<br>array 数组</p>
-<h3 id="reduce是如何工作的"><a href="#reduce是如何工作的" class="headerlink" title="reduce是如何工作的"></a>reduce是如何工作的</h3><p>例如执行下面的代码</p>
-<blockquote>
-<p>[0, 1, 2, 3, 4].reduce(function(previousValue, currentValue, index, array){<br>  return previousValue + currentValue;<br>});</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>previousValue</th>
-<th>currentValue</th>
-<th>index</th>
-<th>return value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>first call</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>second call</td>
-<td>1</td>
-<td>2</td>
-<td>2</td>
-<td>3</td>
-</tr>
-<tr>
-<td>third  call</td>
-<td>3</td>
-<td>3</td>
-<td>3</td>
-<td>6</td>
-</tr>
-<tr>
-<td>fourth call</td>
-<td>6</td>
-<td>4</td>
-<td>4</td>
-<td>10</td>
-</tr>
-</tbody>
-</table>
-<p>  当有<code>initialValue</code>时，previousValue的初始值为<code>initialValue</code>，并且index从0开始回调</p>
-<p> 还可以用箭头函数(es6新增)来写callback<br> ES6允许用<code>=&gt;</code>来写函数<br> <code>var f = v =&gt;v</code> = <code>var f = function(v) {return v;};</code></p>
-<p> 当参数有多个或者没有时，要用小括号<code>()</code>包裹，如果箭头函数的代码块部分多于一条语句，就要使用大括号<code>{}</code>将它们括起来，并且使用return语句返回。由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号。</p>
-<blockquote>
-<p>var sum = (num1, num2) =&gt; num1 + num2;等于<br>   var sum = function(num1, num2) {<br>     return num1 + num2;<br>   };</p>
-</blockquote>
-<p>   返回对象</p>
-<blockquote>
-<p>var getTempItem = id =&gt; ({ id: id, name: “Temp” });</p>
-</blockquote>
-
-          
+          <p>前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/24/JS算法总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -508,18 +422,14 @@
 
       
         
-          
-            <h1 id="任务：用ping命令制造ip分片并用wireshark捕获"><a href="#任务：用ping命令制造ip分片并用wireshark捕获" class="headerlink" title="任务：用ping命令制造ip分片并用wireshark捕获"></a>任务：用ping命令制造ip分片并用wireshark捕获</h1><h2 id="什么叫分片？"><a href="#什么叫分片？" class="headerlink" title="什么叫分片？"></a>什么叫分片？</h2><p>在ip层下面的每一种数据链路协议都规定了一个数据帧中的数据字段的最大长度，这称为最大长度单元<strong><em>MTU</em></strong>。当一个IP数据报封装成链路层的帧时，其总长度一定要小于下面数据链路层的MTU。其中，以太网的的MTU值为1500。因此我们就发一个2000长度的数据报.</p>
-<p><code>ping 114.114.114.114 -l 1600//发送一个长度为1600字节的数据报</code></p>
-<p>因为数据报长度太长的话很容易被屏蔽所以这里就用1600，比1500多一点点</p>
-<p>在wireshark输入过滤条件 <code>ip.dst==114.114.114.114</code></p>
-<p><img src="http://oogbwnwu9.bkt.clouddn.com/ip.png" alt="数据报"></p>
-<p>Mf值为1说明有分片</p>
-<p><img src="http://oogbwnwu9.bkt.clouddn.com/fenpian.png" alt="分片"></p>
-<p>可以看到数据报</p>
-<p>简书地址：<a href="http://www.jianshu.com/u/ebcfbdeab432" target="_blank" rel="external">http://www.jianshu.com/u/ebcfbdeab432</a> 同步更新哦~</p>
-
-          
+          <h1 id="任务：用ping命令制造ip分片并用wireshark捕获"><a href="#任务：用ping命令制造ip分片并用wireshark捕获" class="headerlink" title="任务：用ping命令制造ip分片并用wireshark捕获"></a>任务：用ping命令制造ip分片并用wireshark捕获</h1><h2 id="什么叫分片？"><a href="#什么叫分片？" class="headerlink" title="什么叫分片？"></a>什么叫分片？</h2><p>在ip层下面的每一种数据链路协议都规定了一个数据帧中的数据字段的最大长度，这称为最大长度单元<strong><em>MTU</em></strong>。当一个IP数据报封装成链路层的帧时，其总长度一定要小于下面数据链路层的MTU。其中，以太网的的MTU值为1500。因此我们就发一个2000长度的数据报.<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/17/计算机网络-用ping制造ip分片/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

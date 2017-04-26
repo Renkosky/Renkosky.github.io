@@ -61,18 +61,18 @@
 
 
 
-<meta name="description" content="前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。  1. Your order，please.给定一段顺序错误的字符串，字符串里每个单词都包含一个数字代表着这个单词在句子中正确的位置，返回排序后的字符串。  function order(words){ return words.spli">
+<meta name="description" content="前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。">
 <meta name="keywords" content="Javascript,算法,Codewars">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS算法总结">
 <meta property="og:url" content="http://renkosky.me/2017/04/24/JS算法总结/index.html">
 <meta property="og:site_name" content="Renkosky's Home">
-<meta property="og:description" content="前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。  1. Your order，please.给定一段顺序错误的字符串，字符串里每个单词都包含一个数字代表着这个单词在句子中正确的位置，返回排序后的字符串。  function order(words){ return words.spli">
+<meta property="og:description" content="前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。">
 <meta property="og:image" content="http://oogbwnwu9.bkt.clouddn.com/codewars.png">
-<meta property="og:updated_time" content="2017-04-26T08:40:13.045Z">
+<meta property="og:updated_time" content="2017-04-26T09:51:18.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS算法总结">
-<meta name="twitter:description" content="前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。  1. Your order，please.给定一段顺序错误的字符串，字符串里每个单词都包含一个数字代表着这个单词在句子中正确的位置，返回排序后的字符串。  function order(words){ return words.spli">
+<meta name="twitter:description" content="前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。">
 <meta name="twitter:image" content="http://oogbwnwu9.bkt.clouddn.com/codewars.png">
 
 
@@ -298,23 +298,22 @@
       
 
       
-        <p>前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。</p>
-<p><img src="http://oogbwnwu9.bkt.clouddn.com/codewars.png" alt=""></p>
-<h3 id="1-Your-order，please"><a href="#1-Your-order，please" class="headerlink" title="1. Your order，please."></a>1. Your order，please.</h3><p>给定一段顺序错误的字符串，字符串里每个单词都包含一个数字代表着这个单词在句子中正确的位置，返回排序后的字符串。</p>
+        <p>前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。<br><a id="more"></a><br><img src="http://oogbwnwu9.bkt.clouddn.com/codewars.png" alt=""></p>
+<h2 id="1-Your-order，please"><a href="#1-Your-order，please" class="headerlink" title="1. Your order，please."></a>1. Your order，please.</h2><p>给定一段顺序错误的字符串，字符串里每个单词都包含一个数字代表着这个单词在句子中正确的位置，返回排序后的字符串。</p>
 <blockquote>
 <p>function order(words){<br> return words.split(‘ ‘).sort(function(a, b){<br>    return a.match(/\d/) - b.match(/\d/);<br> }).join(‘ ‘);</p>
 </blockquote>
 <p><code>sort(function(a,b){  return a - b;})</code>sort中的比较函数，可以决定在排好序的数组中两个参数的位置。如果要a在前则要返回一个负数(升序排列)，反之要返回正数(降序排列)。</p>
-<h3 id="2-Where-my-anagrams-at"><a href="#2-Where-my-anagrams-at" class="headerlink" title="2.Where my anagrams at?"></a>2.Where my anagrams at?</h3><p>在数组中找到一个元素，拥有和字符串完全相同的字母。</p>
+<h2 id="2-Where-my-anagrams-at"><a href="#2-Where-my-anagrams-at" class="headerlink" title="2.Where my anagrams at?"></a>2.Where my anagrams at?</h2><p>在数组中找到一个元素，拥有和字符串完全相同的字母。</p>
 <blockquote>
 <p>function anagrams(word, words) {<br>  word = word.split(‘’).sort().join(‘’);<br>  return words.filter(function(v) {return word == v.split(‘’).sort().join(‘’);});<br>}</p>
 </blockquote>
 <p><code>filter()</code>返回一个满足回调函数的新数组</p>
-<h3 id="3-Vasya-Clerk"><a href="#3-Vasya-Clerk" class="headerlink" title="3.Vasya - Clerk"></a>3.Vasya - Clerk</h3><p>一队人在电影院门口排队买票，他们手上有25,50,100三种纸币，你作为售票员一开始没有钱。写一个函数判断是否你有足够的零钱把票卖给每一个人<br>挺有意思的一道题，要记住你只有三种面值的纸币，所以需要把你收到的25 50 100纸币的个数分别记录。</p>
+<h2 id="3-Vasya-Clerk"><a href="#3-Vasya-Clerk" class="headerlink" title="3.Vasya - Clerk"></a>3.Vasya - Clerk</h2><p>一队人在电影院门口排队买票，他们手上有25,50,100三种纸币，你作为售票员一开始没有钱。写一个函数判断是否你有足够的零钱把票卖给每一个人<br>挺有意思的一道题，要记住你只有三种面值的纸币，所以需要把你收到的25 50 100纸币的个数分别记录。</p>
 <blockquote>
 <p></p><p>function tickets(peopleInLine) {<br>var bills = [0, 0, 0]<br>for (var i = 0; i &lt; peopleInLine.length; i++) {<br>switch (peopleInLine[i]) {<br>case 25:<br>bills[0]++<br>break<br>case 50:<br>bills[0]–<br>bills[1]++<br>break<br>case 100:<br>bills[1] ? bills[1]– : bills[0] -= 2<br>bills[0]–<br>break<br>}<br>if (bills[0] &lt; 0) {<br>return ‘NO’<br>}<br>}<br>return ‘YES’</p>
 </blockquote>
-<h3 id="4-Triple-trouble"><a href="#4-Triple-trouble" class="headerlink" title="4.Triple trouble"></a>4.Triple trouble</h3><blockquote>
+<h2 id="4-Triple-trouble"><a href="#4-Triple-trouble" class="headerlink" title="4.Triple trouble"></a>4.Triple trouble</h2><blockquote>
 <p>function tripledouble(num1, num2) {<br>  for (let i = 0; i &lt; 10; i++) {<br>    if (new RegExp(`${i}{3}`).test(num1) &amp;&amp; new RegExp(`${i}{2}`).test(num2)) {<br>      return 1;<br>    }<br>  }<br>  return 0;<br>}</p>
 </blockquote>
 <p>给你两串数字，若满足：第一串中有一个数字出现三次，第二串中那个同样的数字也出现了两次就返回true</p>
@@ -323,7 +322,7 @@
 </blockquote>
 <p>RegExp(“n{X}”) n{X,} 量词匹配包含 X 个 n 的序列的字符串。<br>es6表达式模板字符串（template string）是增强版的字符串，用反引号（`）标识。它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量(感觉有点像JSP里的EL表达式呢)。</p>
 <p>test() 方法用于检测一个字符串是否匹配某个模式.如果字符串 string 中含有与 RegExpObject 匹配的文本，则返回 true，否则返回 false。<br>所以这里的语句 <code>RegExp(\</code>${i}{3}`).test(num1)就是在num1这个字符串中看是否有3个i(1-10)~</p>
-<h3 id="5-Equal-Sides-Of-An-Array"><a href="#5-Equal-Sides-Of-An-Array" class="headerlink" title="5.Equal Sides Of An Array"></a>5.Equal Sides Of An Array</h3><p>找出使数组呈现中心对称的那个元素([1,2,3,4,3,2,1] =&gt; 4)</p>
+<h2 id="5-Equal-Sides-Of-An-Array"><a href="#5-Equal-Sides-Of-An-Array" class="headerlink" title="5.Equal Sides Of An Array"></a>5.Equal Sides Of An Array</h2><p>找出使数组呈现中心对称的那个元素([1,2,3,4,3,2,1] =&gt; 4)</p>
 <p>中心对称的那个元素左右两边必然相等，利用这个特点就可以了。</p>
 <blockquote>
 <p>function findEvenIndex(arr){<br>  for(var i=1; i<arr.length-1; i++)="" {="" if(arr.slice(0,="" i).reduce((a,="" b)="">  a+b) === arr.slice(i+1).reduce((a, b) =&gt;  a+b)) {<br>      return i;<br>    }<br>  }<br>  return -1;<br>}</arr.length-1;></p>
@@ -334,7 +333,7 @@
 <p>callback 执行数组中每个值的函数，包含四个参数:<br><code>previousValue</code><br>上一次调用回调函数返回的值，或者是提供的初始值（initialValue）<br><code>currentValue</code><br>数组中当前被处理的元素<br><code>currentIndex</code><br>当前被处理元素在数组中的索引, 即currentValue的索引.如果有initialValue初始值, 从0开始.如果没有从1开始.<br><code>array</code><br>调用 reduce 的数组<br><code>initialValue</code><br>可选参数, 作为第一次调用 callback 的第一个参数。</p>
 <p><code>reduce</code> 为数组中的每一个元素依次执行回调函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：</p>
 <p>previousValu 上一次值<br>currentValue 当前值<br>currentIndex 当前值的索引<br>array 数组</p>
-<h3 id="reduce是如何工作的"><a href="#reduce是如何工作的" class="headerlink" title="reduce是如何工作的"></a>reduce是如何工作的</h3><p>例如执行下面的代码</p>
+<h2 id="reduce是如何工作的"><a href="#reduce是如何工作的" class="headerlink" title="reduce是如何工作的"></a>reduce是如何工作的</h2><p>例如执行下面的代码</p>
 <blockquote>
 <p>[0, 1, 2, 3, 4].reduce(function(previousValue, currentValue, index, array){<br>  return previousValue + currentValue;<br>});</p>
 </blockquote>
@@ -389,6 +388,7 @@
 <blockquote>
 <p>var getTempItem = id =&gt; ({ id: id, name: “Temp” });</p>
 </blockquote>
+<p>总结: 对那些数组方法还有正则的用法太不熟悉了..很多时候第一反应都是用for做循环，大一c留下的坑。ES6以后要从头到尾看一遍，很有用的说。</p>
 
       
     </div>
@@ -563,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Your-order，please"><span class="nav-number">1.</span> <span class="nav-text">1. Your order，please.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Where-my-anagrams-at"><span class="nav-number">2.</span> <span class="nav-text">2.Where my anagrams at?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Vasya-Clerk"><span class="nav-number">3.</span> <span class="nav-text">3.Vasya - Clerk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Triple-trouble"><span class="nav-number">4.</span> <span class="nav-text">4.Triple trouble</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Equal-Sides-Of-An-Array"><span class="nav-number">5.</span> <span class="nav-text">5.Equal Sides Of An Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce是如何工作的"><span class="nav-number">6.</span> <span class="nav-text">reduce是如何工作的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Your-order，please"><span class="nav-number">1.</span> <span class="nav-text">1. Your order，please.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Where-my-anagrams-at"><span class="nav-number">2.</span> <span class="nav-text">2.Where my anagrams at?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Vasya-Clerk"><span class="nav-number">3.</span> <span class="nav-text">3.Vasya - Clerk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Triple-trouble"><span class="nav-number">4.</span> <span class="nav-text">4.Triple trouble</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Equal-Sides-Of-An-Array"><span class="nav-number">5.</span> <span class="nav-text">5.Equal Sides Of An Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce是如何工作的"><span class="nav-number">6.</span> <span class="nav-text">reduce是如何工作的</span></a></li></ol></div>
             
 
           </div>
