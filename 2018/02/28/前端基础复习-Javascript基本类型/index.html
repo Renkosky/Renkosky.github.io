@@ -68,7 +68,7 @@
 <meta property="og:url" content="http://renkosky.me/2018/02/28/前端基础复习-Javascript基本类型/index.html">
 <meta property="og:site_name" content="Renkosky's Home">
 <meta property="og:description" content="#数据类型 unfineded,null,String,Number,Boolean,String,Object,Symbol。变量的类型可由typeof运算符得到。 Undefinedundefind表示未定义使用var声明变量但未对其加以初始化时，这个变量的值就是undefined12var a;console.log(a)//undefind 其他典型用法  调用函数时，应该提供的参数没有提">
-<meta property="og:updated_time" content="2018-02-28T09:24:35.370Z">
+<meta property="og:updated_time" content="2018-02-28T10:35:09.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端基础复习-Javascript基本类型">
 <meta name="twitter:description" content="#数据类型 unfineded,null,String,Number,Boolean,String,Object,Symbol。变量的类型可由typeof运算符得到。 Undefinedundefind表示未定义使用var声明变量但未对其加以初始化时，这个变量的值就是undefined12var a;console.log(a)//undefind 其他典型用法  调用函数时，应该提供的参数没有提">
@@ -306,9 +306,10 @@
 <li><p>对象没有赋值的属性，该属性的值为undefined。</p>
 </li>
 <li><p>函数没有返回值时，默认返回undefined。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;<span class="built_in">console</span>.log(x)&#125;</div><div class="line">f() <span class="comment">// undefined</span></div><div class="line"></div><div class="line"><span class="keyword">var</span>  o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">o.p <span class="comment">// undefined</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> x = f();</div><div class="line">x <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;<span class="built_in">console</span>.log(x)&#125;</div><div class="line">f() <span class="comment">// undefined</span></div><div class="line"></div><div class="line"><span class="keyword">var</span>  o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">o.p <span class="comment">// undefined</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> x = f();</div><div class="line">x <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
 <h2 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h2><p>null时一个空对象指针表示“没有对象”，即该处不应该有值。使用typeof null时会返回object<br>典型用法</p>
 <ul>
 <li><p>作为函数的参数，表示该函数的参数不是对象。</p>
@@ -438,6 +439,10 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/02/前端基础复习-继承/" rel="next" title="前端基础复习-继承">
+                <i class="fa fa-chevron-left"></i> 前端基础复习-继承
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -518,7 +523,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -531,7 +536,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
