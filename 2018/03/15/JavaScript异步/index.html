@@ -61,18 +61,18 @@
 
 
 
-<meta name="description" content="Javascript单线程JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。 任务队列单线程意味着所有">
+<meta name="description" content="Javascript单线程JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。">
 <meta name="keywords" content="Javasript,异步">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript异步">
 <meta property="og:url" content="http://renkosky.me/2018/03/15/JavaScript异步/index.html">
 <meta property="og:site_name" content="Renkosky's Home">
-<meta property="og:description" content="Javascript单线程JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。 任务队列单线程意味着所有">
+<meta property="og:description" content="Javascript单线程JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。">
 <meta property="og:image" content="http://oogbwnwu9.bkt.clouddn.com/EventLoop.png">
-<meta property="og:updated_time" content="2018-03-15T10:12:59.958Z">
+<meta property="og:updated_time" content="2018-03-27T13:20:58.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript异步">
-<meta name="twitter:description" content="Javascript单线程JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。 任务队列单线程意味着所有">
+<meta name="twitter:description" content="Javascript单线程JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。">
 <meta name="twitter:image" content="http://oogbwnwu9.bkt.clouddn.com/EventLoop.png">
 
 
@@ -298,7 +298,7 @@
       
 
       
-        <h1 id="Javascript单线程"><a href="#Javascript单线程" class="headerlink" title="Javascript单线程"></a>Javascript单线程</h1><p>JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。</p>
+        <h1 id="Javascript单线程"><a href="#Javascript单线程" class="headerlink" title="Javascript单线程"></a>Javascript单线程</h1><p>JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。<br><a id="more"></a></p>
 <h2 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h2><p>单线程意味着所有任务的执行都需要排队，如果其中一个任务执行很慢，例如IO设备，就会导致整个的阻塞。因此JavaScript有一种机制，可以把阻塞的任务挂起，等到返回结果再执行。</p>
 <p>JavaScript的任务分为两种，一种叫同步任务，一种叫异步任务。同步任务在主线程上执行，而异步任务是不进入主线程、而进入”任务队列”（task queue）的任务，只有”任务队列”通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。</p>
 <p>异步执行的机制如下</p>
@@ -372,6 +372,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/27/深拷贝浅拷贝/" rel="next" title="深拷贝浅拷贝">
+                <i class="fa fa-chevron-left"></i> 深拷贝浅拷贝
+              </a>
             
           </div>
 
@@ -453,7 +457,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
