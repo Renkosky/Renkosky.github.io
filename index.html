@@ -301,6 +301,20 @@
 <h1 id="react的特点"><a href="#react的特点" class="headerlink" title="react的特点"></a>react的特点</h1><h2 id="声明式"><a href="#声明式" class="headerlink" title="声明式"></a>声明式</h2><p>react采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。</p>
 <h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p>虚拟DOM是一种抽象的数据结构，在DOM的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟DOM，最后再批量同步到DOM中。虚拟DOM只有插入文档后才会变成真正的DOM</p>
 <h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2><p>react中所有的 DOM 变动，都先在虚拟 DOM上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff</p>
+<h2 id="什么是-VDOM？"><a href="#什么是-VDOM？" class="headerlink" title="什么是 VDOM？"></a>什么是 VDOM？</h2><p>首先，DOM 文档对象模型(Document Object Model)）是一种对文档进行抽象化的树形结构，文档皆在这个结构中，而 VDOM 则是对 DOM 的抽象，其本身是一个 js 的对象，拥有 dom 的一些属性例如 class，id 等。</p>
+<p>例如 react 中的 VDOM 由 VNODE 组成，其包含：</p>
+<ul>
+<li>标签类型：$$typeof</li>
+<li>节点属性：props（包括属性，事件，子节点，类选择器等）</li>
+<li>唯一 ID 值：key</li>
+<li>引用指针：ref<br>在 react 中我们通过 jsx 去编写 js 和 html 的混合，然后通过 babel 插件编译成对象再调用 createElement<br>例子：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = &lt;h1 className="greeting"&gt;Hello, world!&lt;/h1&gt;</div></pre></td></tr></table></figure>
+<p>编译为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jsx书写的代码会变成js对象然后调用createElement把其作为参数传入</span></div><div class="line"><span class="keyword">const</span> element = React.createElement(</div><div class="line">  <span class="string">'h1'</span>,</div><div class="line">  &#123; <span class="attr">className</span>: <span class="string">'greeting'</span> &#125;,</div><div class="line">  <span class="string">'Hello, world!'</span></div><div class="line">)</div></pre></td></tr></table></figure>
+<p>最后返回</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = &#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'h1'</span>,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">    <span class="attr">className</span>: <span class="string">'greeting'</span>,</div><div class="line">    <span class="attr">children</span>: <span class="string">'Hello, world'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="使用-VDOM-的原因。"><a href="#使用-VDOM-的原因。" class="headerlink" title="使用 VDOM 的原因。"></a>使用 VDOM 的原因。</h2><p>随着前端技术的发展，现在的网页应用变得越来越庞大，DOM 树也随之变得复杂。当我们要修改 DOM 的某个元素时，我们需要先遍历找个这个元素，然后才修改能修改。而且如果我们大量地去修改 DOM，每次 DOM 修改浏览器就得重绘甚至重排（repaint）页面，损耗了大量性能</p>
 <h2 id="数据驱动"><a href="#数据驱动" class="headerlink" title="数据驱动"></a>数据驱动</h2><p>react通过数据驱动更新节点，通过更新虚拟的抽象数据来更新界面</p>
 <h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><p>每一个组件都拥有自己的状态（state）用其渲染复杂的界面。也可以声明无状态组件，在更高级的组件中保存state，而子组件只负责视图部分。<br>
           <!--noindex-->
