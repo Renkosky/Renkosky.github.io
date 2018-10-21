@@ -61,17 +61,17 @@
 
 
 
-<meta name="description" content="HTTP报文HTTP报文是在HTTP应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
+<meta name="description" content="HTTP 报文HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
 <meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="http相关知识">
 <meta property="og:url" content="http://renkosky.me/2018/03/11/http相关知识/index.html">
 <meta property="og:site_name" content="Renkosky's Home">
-<meta property="og:description" content="HTTP报文HTTP报文是在HTTP应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
-<meta property="og:updated_time" content="2018-03-12T16:12:12.734Z">
+<meta property="og:description" content="HTTP 报文HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
+<meta property="og:updated_time" content="2018-10-02T04:15:28.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http相关知识">
-<meta name="twitter:description" content="HTTP报文HTTP报文是在HTTP应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
+<meta name="twitter:description" content="HTTP 报文HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
 
 
 
@@ -296,18 +296,18 @@
       
 
       
-        <h1 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h1><p>HTTP报文是在HTTP应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。</p>
+        <h1 id="HTTP-报文"><a href="#HTTP-报文" class="headerlink" title="HTTP 报文"></a>HTTP 报文</h1><p>HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。</p>
 <h2 id="报文的组成部分"><a href="#报文的组成部分" class="headerlink" title="报文的组成部分"></a>报文的组成部分</h2><ul>
 <li>起始行</li>
 <li>头部</li>
 <li>主体<a id="more"></a>
-<h3 id="起始行"><a href="#起始行" class="headerlink" title="起始行"></a>起始行</h3><ul>
-<li>请求行：请求报文的起始行，其中包含了一个方法和一个请求url</li>
-<li>响应行：响应报文的起始行，包含响应报文使用的http版本，状态码，描述操作状态的文本形式的原因短句</li>
-</ul>
 </li>
 </ul>
-<h3 id="首部"><a href="#首部" class="headerlink" title="首部"></a>首部</h3><p>http首部字段向请求和响应报文添加了一些附加信息。首部有以下分类：</p>
+<h3 id="起始行"><a href="#起始行" class="headerlink" title="起始行"></a>起始行</h3><ul>
+<li>请求行：请求报文的起始行，其中包含了一个方法和一个请求 url</li>
+<li>响应行：响应报文的起始行，包含响应报文使用的 http 版本，状态码，描述操作状态的文本形式的原因短句</li>
+</ul>
+<h3 id="首部"><a href="#首部" class="headerlink" title="首部"></a>首部</h3><p>http 首部字段向请求和响应报文添加了一些附加信息。首部有以下分类：</p>
 <ul>
 <li>通用首部：可以出现在请求或响应报文中</li>
 <li>请求首部：提供更多有关请求的信息</li>
@@ -317,20 +317,18 @@
 </ul>
 <p>常见首部实例</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Date:Tue,3Oct 1997 02:16:03 GMT //服务器产生响应的日期</div><div class="line">Content-length：15040           //实体的主体部分包含了一个15040字节的数据</div><div class="line">Content-type：image/gif         //实体的主体是一个gif图</div><div class="line">Accept： image/gif，image/jpeg， text/html //客户端可以接收GIF，JPEG和HTML</div></pre></td></tr></table></figure>
-<h3 id="实体的主体部分"><a href="#实体的主体部分" class="headerlink" title="实体的主体部分"></a>实体的主体部分</h3><p>实体的主体是HTTP报文的负荷。可以承载图片，视频，HTML文档，软件应用程序，邮件等。</p>
-<h2 id="首部详解"><a href="#首部详解" class="headerlink" title="首部详解"></a>首部详解</h2><h3 id="General-Header-通用首部"><a href="#General-Header-通用首部" class="headerlink" title="General Header 通用首部"></a>General Header 通用首部</h3><p>general header是request、response都可用的, 但是不能用于entity.以下为通用的信息首部</p>
+<h3 id="实体的主体部分"><a href="#实体的主体部分" class="headerlink" title="实体的主体部分"></a>实体的主体部分</h3><p>实体的主体是 HTTP 报文的负荷。可以承载图片，视频，HTML 文档，软件应用程序，邮件等。</p>
+<h2 id="首部详解"><a href="#首部详解" class="headerlink" title="首部详解"></a>首部详解</h2><h3 id="General-Header-通用首部"><a href="#General-Header-通用首部" class="headerlink" title="General Header 通用首部"></a>General Header 通用首部</h3><p>general header 是 request、response 都可用的, 但是不能用于 entity.以下为通用的信息首部</p>
 <ul>
 <li>Request URL: 请求地址</li>
 <li>Request Method: 请求方法</li>
 <li>Status Code: 状态码</li>
 <li>Remote Address: 路由地址</li>
-<li>Referrer Policy: 用于过滤 Referrer 报头内容有以下值<ul>
+<li>Referrer Policy: 用于过滤 Referrer 报头内容有以下值</li>
 <li>no-referrer-when-downgrade<br>当发生降级（比如从 https:// 跳转到 http:// ）时，不传递 Referrer 报头。但是反过来的话不受影响。通常也会当作浏览器的默认安全策略。</li>
-<li>same-origin同源，即当协议、域名和端口（如果有一方指定的话）都相同，才会传递 Referrer。</li>
+<li>same-origin 同源，即当协议、域名和端口（如果有一方指定的话）都相同，才会传递 Referrer。</li>
 </ul>
-</li>
-</ul>
-<h3 id="Request-Header-请求首部"><a href="#Request-Header-请求首部" class="headerlink" title="Request Header 请求首部"></a>Request Header 请求首部</h3><p>  request-header fields 允许客户端传递关于request和客户端的附加信息到服务端</p>
+<h3 id="Request-Header-请求首部"><a href="#Request-Header-请求首部" class="headerlink" title="Request Header 请求首部"></a>Request Header 请求首部</h3><p>request-header fields 允许客户端传递关于 request 和客户端的附加信息到服务端</p>
 <ul>
 <li>Accept： 告诉服务器能发送哪些媒体类型</li>
 <li>Accept-Charset： 告诉服务器能发送</li>
@@ -338,7 +336,23 @@
 <li>Accept-Language： 告诉服务器能发送哪些语言</li>
 <li>Host：发送请求的域</li>
 <li>If-Modified-Since： 除非在某个指定日期后资源被修改过，否则就限制这个请求</li>
-<li>If-None-Match ：如果提供的实体标记（etag）与当前文档的实体标记不符合，则请求文档</li>
+<li><p>If-None-Match ：如果提供的实体标记（etag）与当前文档的实体标记不符合，则请求文档</p>
+<blockquote>
+<p>1)请求(客户端-&gt;服务端[request])</p>
+</blockquote>
+<pre><code>GET(请求的方式) /newcoder/hello.html(请求的目标资源) HTTP/1.1(请求采用的协议和版本号)
+
+Accept: */*(客户端能接收的资源类型)
+Accept-Language: en-us(客户端接收的语言类型)
+Connection: Keep-Alive(维护客户端和服务端的连接关系)
+Host: localhost:8080(连接的目标主机和端口号)
+Referer: http://localhost/links.asp(告诉服务器我来自于哪里)
+User-Agent: Mozilla/4.0(客户端版本号的名字)
+Accept-Encoding: gzip, deflate(客户端能接收的压缩数据的类型)
+If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT(缓存时间)
+Cookie(客户端暂存服务端的信息)
+Date: Tue, 11 Jul 2000 18:23:51 GMT(客户端请求服务端的时间)
+</code></pre></li>
 </ul>
 <h3 id="Response-Header-响应首部"><a href="#Response-Header-响应首部" class="headerlink" title="Response Header 响应首部"></a>Response Header 响应首部</h3><ul>
 <li>access-control-allow-origin:*</li>
@@ -346,18 +360,39 @@
 <li>cache-control: 服务器应遵循的缓存机制。<ul>
 <li>public(可以用 Cached 内容回应任何用户)</li>
 <li>private（只能用缓存内容回应先前请求该内容的那个用户）</li>
-<li>no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端）</li>
-<li>max-age = xxx：（本响应包含的对象的过期时间）  </li>
-<li>ALL:  no-store（不允许缓存）  </li>
+<li>no-cache（可以缓存，但是只有在跟 WEB 服务器验证了其有效后，才能返回给客户端）</li>
+<li>max-age = xxx：（本响应包含的对象的过期时间）</li>
+<li>ALL: no-store（不允许缓存）</li>
 </ul>
 </li>
 <li>Expires：缓存过期过期时间</li>
 <li>content-encoding</li>
 <li>content-type</li>
-<li>date</li>
+<li><p>date</p>
+<blockquote>
+<p>2)响应(服务端-&gt;客户端[response])</p>
+</blockquote>
+<pre><code>HTTP/1.1(响应采用的协议和版本号) 200(状态码) OK(描述信息)
+Location: http://www.baidu.com(服务端需要客户端访问的页面路径)
+Server:apache tomcat(服务端的Web服务端名)
+Content-Encoding: gzip(服务端能够发送压缩编码类型)
+Content-Length: 80(服务端发送的压缩数据的长度)
+Content-Language: zh-cn(服务端发送的语言类型)
+Content-Type: text/html; charset=GB2312(服务端发送的类型及采用的编码方式)
+Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT(服务端对该资源最后修改的时间)
+Refresh: 1;url=http://www.it315.org(服务端要求客户端1秒钟后，刷新，然后访问指定的页面路径)
+Content-Disposition: attachment; filename=aaa.zip(服务端要求客户端以下载文件的方式打开该文件)
+Transfer-Encoding: chunked(分块传递数据到客户端）
+Set-Cookie:SS=Q0=5Lb_nQ; path=/search(服务端发送到客户端的暂存数据)
+Expires: -1//3种(服务端禁止客户端缓存页面数据)
+Cache-Control: no-cache(服务端禁止客户端缓存页面数据)
+Pragma: no-cache(服务端禁止客户端缓存页面数据)
+Connection: close(1.0)/(1.1)Keep-Alive(维护客户端和服务端的连接关系)
+Date: Tue, 11 Jul 2000 18:23:51 GMT(服务端响应客户端的时间)
+</code></pre></li>
 </ul>
-<p>Expires/Cache-Control Header是控制浏览器是否直接从浏览器缓存取数据还是重新发请求到服务器取数据。只是Cache-Control比Expires可以控制的多一些， 而且Cache-Control会重写Expires的规则。</p>
-<p>Last-Modified/If-Modified-Since和ETag/If-None-Match是浏览器发送请求到服务器后判断文件是否 已经修改过，如果没有修改过就只发送一个304回给浏览器，告诉浏览器直接从自己本地的缓存取数据；如果修改过那就整个数据重新发给浏览器。</p>
+<p>Expires/Cache-Control Header 是控制浏览器是否直接从浏览器缓存取数据还是重新发请求到服务器取数据。只是 Cache-Control 比 Expires 可以控制的多一些， 而且 Cache-Control 会重写 Expires 的规则。</p>
+<p>Last-Modified/If-Modified-Since 和 ETag/If-None-Match 是浏览器发送请求到服务器后判断文件是否 已经修改过，如果没有修改过就只发送一个 304 回给浏览器，告诉浏览器直接从自己本地的缓存取数据；如果修改过那就整个数据重新发给浏览器。</p>
 <h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><h3 id="200-299-成功状态码"><a href="#200-299-成功状态码" class="headerlink" title="200~299 成功状态码"></a>200~299 成功状态码</h3><ul>
 <li>200： OK</li>
 <li>201： created 创建服务器请求</li>
@@ -366,18 +401,18 @@
 <li>204 No Content</li>
 </ul>
 <h3 id="300-399-重定向状态码"><a href="#300-399-重定向状态码" class="headerlink" title="300~399 重定向状态码"></a>300~399 重定向状态码</h3><ul>
-<li>300: Multiple Choices 客户端请求一个实际指向多个资源的URL时会返回这个状态码</li>
-<li>301: Moved Permanently 请求的rul已被移除时使用</li>
-<li>302: Found 与301类似</li>
-<li>303: See Other 告知客户端应该使用另一个URL来获取资源</li>
+<li>300: Multiple Choices 客户端请求一个实际指向多个资源的 URL 时会返回这个状态码</li>
+<li>301: Moved Permanently 请求的 rul 已被移除时使用</li>
+<li>302: Found 与 301 类似</li>
+<li>303: See Other 告知客户端应该使用另一个 URL 来获取资源</li>
 <li>304：Not Modified 客户端可以通过所包含请首部，使其请求变成有条件的。表示资源未修改，不包括主体</li>
-<li>305：Use Proxy 必须通过一个代理访问资源，代理位置由Location首部给出</li>
+<li>305：Use Proxy 必须通过一个代理访问资源，代理位置由 Location 首部给出</li>
 </ul>
 <h3 id="400-499-客户端错误状态码"><a href="#400-499-客户端错误状态码" class="headerlink" title="400~499 客户端错误状态码"></a>400~499 客户端错误状态码</h3><ul>
 <li>400：Bad Request 告知客户端发送了一个错误的请求</li>
 <li>401：Unauthorized 与适当的首部一起返回，在这些首部中请求客户端在获取对象资源的访问权之前，对自己进行认证</li>
 <li>403: Forbidden 请求被服务器拒绝了</li>
-<li>404：Not Found 服务器无法找到所请求的URL</li>
+<li>404：Not Found 服务器无法找到所请求的 URL</li>
 <li>408：Request Timeout 请求时间太长</li>
 </ul>
 <h3 id="500-599-服务器粗偶状态码"><a href="#500-599-服务器粗偶状态码" class="headerlink" title="500~599 服务器粗偶状态码"></a>500~599 服务器粗偶状态码</h3><ul>
@@ -385,7 +420,7 @@
 <li>501 Not Implement 客户端请求超出服务器能力范围（例如不支持的方法）</li>
 <li>502 Bad Gateway 作为代理或网管使用的服务器从请求响应链中收到一个伪请求（比如无法链接到父网关）</li>
 <li>503 Service Unavailable 用来说明服务器无法为请求提供服务</li>
-<li>504 Gateway Timeout 类似408</li>
+<li>504 Gateway Timeout 类似 408</li>
 <li>HTTP Version Not supported 服务器收到的请求使用不受支持的协议版本</li>
 </ul>
 
@@ -514,7 +549,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -527,7 +562,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -576,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP报文"><span class="nav-number">1.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#报文的组成部分"><span class="nav-number">1.1.</span> <span class="nav-text">报文的组成部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起始行"><span class="nav-number">1.1.1.</span> <span class="nav-text">起始行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首部"><span class="nav-number">1.1.2.</span> <span class="nav-text">首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体的主体部分"><span class="nav-number">1.1.3.</span> <span class="nav-text">实体的主体部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首部详解"><span class="nav-number">1.2.</span> <span class="nav-text">首部详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#General-Header-通用首部"><span class="nav-number">1.2.1.</span> <span class="nav-text">General Header 通用首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-Header-请求首部"><span class="nav-number">1.2.2.</span> <span class="nav-text">Request Header 请求首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-Header-响应首部"><span class="nav-number">1.2.3.</span> <span class="nav-text">Response Header 响应首部</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">1.3.</span> <span class="nav-text">状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#200-299-成功状态码"><span class="nav-number">1.3.1.</span> <span class="nav-text">200~299 成功状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#300-399-重定向状态码"><span class="nav-number">1.3.2.</span> <span class="nav-text">300~399 重定向状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#400-499-客户端错误状态码"><span class="nav-number">1.3.3.</span> <span class="nav-text">400~499 客户端错误状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#500-599-服务器粗偶状态码"><span class="nav-number">1.3.4.</span> <span class="nav-text">500~599 服务器粗偶状态码</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-报文"><span class="nav-number">1.</span> <span class="nav-text">HTTP 报文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#报文的组成部分"><span class="nav-number">1.1.</span> <span class="nav-text">报文的组成部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起始行"><span class="nav-number">1.1.1.</span> <span class="nav-text">起始行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首部"><span class="nav-number">1.1.2.</span> <span class="nav-text">首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体的主体部分"><span class="nav-number">1.1.3.</span> <span class="nav-text">实体的主体部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首部详解"><span class="nav-number">1.2.</span> <span class="nav-text">首部详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#General-Header-通用首部"><span class="nav-number">1.2.1.</span> <span class="nav-text">General Header 通用首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-Header-请求首部"><span class="nav-number">1.2.2.</span> <span class="nav-text">Request Header 请求首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-Header-响应首部"><span class="nav-number">1.2.3.</span> <span class="nav-text">Response Header 响应首部</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">1.3.</span> <span class="nav-text">状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#200-299-成功状态码"><span class="nav-number">1.3.1.</span> <span class="nav-text">200~299 成功状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#300-399-重定向状态码"><span class="nav-number">1.3.2.</span> <span class="nav-text">300~399 重定向状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#400-499-客户端错误状态码"><span class="nav-number">1.3.3.</span> <span class="nav-text">400~499 客户端错误状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#500-599-服务器粗偶状态码"><span class="nav-number">1.3.4.</span> <span class="nav-text">500~599 服务器粗偶状态码</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

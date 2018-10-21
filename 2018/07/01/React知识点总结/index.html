@@ -61,18 +61,18 @@
 
 
 
-<meta name="description" content="什么是reactReact是一个声明式的，高效的，并且灵活的用于构建用户界面的 JavaScript 库。 react的特点声明式react采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。 虚拟DOM虚拟DOM是一种抽象的数据结构，在DOM的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟DOM，最后再批量同步到DOM中。虚拟DOM只有">
+<meta name="description" content="什么是 reactReact 是一个声明式的，高效的，并且灵活的用于构建用户界面的 JavaScript 库。 react 的特点声明式react 采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。 虚拟 DOM虚拟 DOM 是一种抽象的数据结构，在 DOM 的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟 DOM，最后再批量同步到 D">
 <meta name="keywords" content="JavaScript,React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React知识点总结">
 <meta property="og:url" content="http://renkosky.me/2018/07/01/React知识点总结/index.html">
 <meta property="og:site_name" content="Renkosky's Home">
-<meta property="og:description" content="什么是reactReact是一个声明式的，高效的，并且灵活的用于构建用户界面的 JavaScript 库。 react的特点声明式react采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。 虚拟DOM虚拟DOM是一种抽象的数据结构，在DOM的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟DOM，最后再批量同步到DOM中。虚拟DOM只有">
+<meta property="og:description" content="什么是 reactReact 是一个声明式的，高效的，并且灵活的用于构建用户界面的 JavaScript 库。 react 的特点声明式react 采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。 虚拟 DOM虚拟 DOM 是一种抽象的数据结构，在 DOM 的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟 DOM，最后再批量同步到 D">
 <meta property="og:image" content="http://oogbwnwu9.bkt.clouddn.com/reactlifecircle.png">
-<meta property="og:updated_time" content="2018-08-05T15:47:46.639Z">
+<meta property="og:updated_time" content="2018-10-16T16:04:02.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React知识点总结">
-<meta name="twitter:description" content="什么是reactReact是一个声明式的，高效的，并且灵活的用于构建用户界面的 JavaScript 库。 react的特点声明式react采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。 虚拟DOM虚拟DOM是一种抽象的数据结构，在DOM的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟DOM，最后再批量同步到DOM中。虚拟DOM只有">
+<meta name="twitter:description" content="什么是 reactReact 是一个声明式的，高效的，并且灵活的用于构建用户界面的 JavaScript 库。 react 的特点声明式react 采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。 虚拟 DOM虚拟 DOM 是一种抽象的数据结构，在 DOM 的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟 DOM，最后再批量同步到 D">
 <meta name="twitter:image" content="http://oogbwnwu9.bkt.clouddn.com/reactlifecircle.png">
 
 
@@ -298,10 +298,20 @@
       
 
       
-        <h1 id="什么是react"><a href="#什么是react" class="headerlink" title="什么是react"></a>什么是react</h1><p>React是一个声明式的，高效的，并且灵活的用于构建用户界面的 JavaScript 库。</p>
-<h1 id="react的特点"><a href="#react的特点" class="headerlink" title="react的特点"></a>react的特点</h1><h2 id="声明式"><a href="#声明式" class="headerlink" title="声明式"></a>声明式</h2><p>react采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。</p>
-<h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p>虚拟DOM是一种抽象的数据结构，在DOM的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟DOM，最后再批量同步到DOM中。虚拟DOM只有插入文档后才会变成真正的DOM</p>
-<h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2><p>react中所有的 DOM 变动，都先在虚拟 DOM上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff</p>
+        <h1 id="什么是-react"><a href="#什么是-react" class="headerlink" title="什么是 react"></a>什么是 react</h1><p>React 是一个声明式的，高效的，并且灵活的用于构建用户界面的 JavaScript 库。</p>
+<h1 id="react-的特点"><a href="#react-的特点" class="headerlink" title="react 的特点"></a>react 的特点</h1><h2 id="声明式"><a href="#声明式" class="headerlink" title="声明式"></a>声明式</h2><p>react 采用声明式的渲染方法，当数据更改时，React 将高效地更新和正确的渲染组件。</p>
+<h2 id="虚拟-DOM"><a href="#虚拟-DOM" class="headerlink" title="虚拟 DOM"></a>虚拟 DOM</h2><p>虚拟 DOM 是一种抽象的数据结构，在 DOM 的基础上建立了一个抽象层，对数据和状态所做的任何改动，都会被自动且高效的同步到虚拟 DOM，最后再批量同步到 DOM 中。虚拟 DOM 只有插入文档后才会变成真正的 DOM</p>
+<h2 id="diff-算法"><a href="#diff-算法" class="headerlink" title="diff 算法"></a>diff 算法</h2><p>react 中所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM 上，这种算法叫做 DOM diff</p>
+<p>DOM DIFF 是 react 应用中的精华所在，DOM DIFF 在使用时有一些约定如下：</p>
+<ol>
+<li><p>DOM 节点跨层级的移动操作特别少，可以忽略不计（例如 A 原本和 B 平级，随后 A 变成 B 的子节点）</p>
+</li>
+<li><p>拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构（A 和 B 组件结构不一致）</p>
+</li>
+<li><p>同一层级的一组子节点，它们可以通过 uuid 进行区分。</p>
+</li>
+</ol>
+<p>DIFF 算法在执行时有三个维度，分别是 Tree DIFF、Component DIFF 和 Element DIFF，执行时按顺序依次执行，它们的差异仅仅因为 DIFF 粒度不同、执行先后顺序不同。</p>
 <h2 id="什么是-VDOM？"><a href="#什么是-VDOM？" class="headerlink" title="什么是 VDOM？"></a>什么是 VDOM？</h2><p>首先，DOM 文档对象模型(Document Object Model)）是一种对文档进行抽象化的树形结构，文档皆在这个结构中，而 VDOM 则是对 DOM 的抽象，其本身是一个 js 的对象，拥有 dom 的一些属性例如 class，id 等。</p>
 <p>例如 react 中的 VDOM 由 VNODE 组成，其包含：</p>
 <ul>
@@ -316,45 +326,46 @@
 <p>最后返回</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = &#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'h1'</span>,</div><div class="line">  <span class="attr">props</span>: &#123;</div><div class="line">    <span class="attr">className</span>: <span class="string">'greeting'</span>,</div><div class="line">    <span class="attr">children</span>: <span class="string">'Hello, world'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="使用-VDOM-的原因。"><a href="#使用-VDOM-的原因。" class="headerlink" title="使用 VDOM 的原因。"></a>使用 VDOM 的原因。</h2><p>随着前端技术的发展，现在的网页应用变得越来越庞大，DOM 树也随之变得复杂。当我们要修改 DOM 的某个元素时，我们需要先遍历找个这个元素，然后才修改能修改。而且如果我们大量地去修改 DOM，每次 DOM 修改浏览器就得重绘甚至重排（repaint）页面，损耗了大量性能</p>
-<h2 id="数据驱动"><a href="#数据驱动" class="headerlink" title="数据驱动"></a>数据驱动</h2><p>react通过数据驱动更新节点，通过更新虚拟的抽象数据来更新界面</p>
-<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><p>每一个组件都拥有自己的状态（state）用其渲染复杂的界面。也可以声明无状态组件，在更高级的组件中保存state，而子组件只负责视图部分。<br><a id="more"></a></p>
-<h1 id="react生命周期"><a href="#react生命周期" class="headerlink" title="react生命周期"></a>react生命周期</h1><p>组件的生命周期大致分成三个状态：</p>
+<h2 id="数据驱动"><a href="#数据驱动" class="headerlink" title="数据驱动"></a>数据驱动</h2><p>react 通过数据驱动更新节点，通过更新虚拟的抽象数据来更新界面</p>
+<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><p>每一个组件都拥有自己的状态（state）用其渲染复杂的界面。也可以声明无状态组件，在更高级的组件中保存 state，而子组件只负责视图部分。</p>
+<a id="more"></a>
+<h1 id="react-生命周期"><a href="#react-生命周期" class="headerlink" title="react 生命周期"></a>react 生命周期</h1><p>组件的生命周期大致分成三个状态：</p>
 <ul>
-<li><p>Mounting：已插入真实  DOM，即 Initial Render</p>
+<li><p>Mounting：已插入真实 DOM，即 Initial Render</p>
 </li>
 <li><p>Updating：正在被重新渲染，即 Props 与 State 改变</p>
 </li>
-<li><p>Unmounting：已移出真实  DOM，即 Component Unmount</p>
+<li><p>Unmounting：已移出真实 DOM，即 Component Unmount</p>
 </li>
 </ul>
-<p>每个状态有两个处理函数，分为will和did，分别在状态前和状态后调用</p>
-<h2 id="一个react组件完整的渲染过程"><a href="#一个react组件完整的渲染过程" class="headerlink" title="一个react组件完整的渲染过程"></a>一个react组件完整的渲染过程</h2><h3 id="类调用"><a href="#类调用" class="headerlink" title="类调用:"></a>类调用:</h3><p>此过程仅在类创建时被一次，即无论创建多少个ReactElement，此过程均只会执行一次</p>
+<p>每个状态有两个处理函数，分为 will 和 did，分别在状态前和状态后调用</p>
+<h2 id="一个-react-组件完整的渲染过程"><a href="#一个-react-组件完整的渲染过程" class="headerlink" title="一个 react 组件完整的渲染过程"></a>一个 react 组件完整的渲染过程</h2><h3 id="类调用"><a href="#类调用" class="headerlink" title="类调用:"></a>类调用:</h3><p>此过程仅在类创建时被一次，即无论创建多少个 ReactElement，此过程均只会执行一次</p>
 <ul>
 <li>getDefaultProps</li>
 </ul>
-<h3 id="实例化"><a href="#实例化" class="headerlink" title="实例化:"></a>实例化:</h3><p>此过程仅执行一次，执行完毕后，React组件真正被渲染到DOM中<br>期间执行生命周期函数如下：</p>
+<h3 id="实例化"><a href="#实例化" class="headerlink" title="实例化:"></a>实例化:</h3><p>此过程仅执行一次，执行完毕后，React 组件真正被渲染到 DOM 中<br>期间执行生命周期函数如下：</p>
 <ul>
 <li><p>getInitialState</p>
 </li>
-<li><p>componentWillMount： 组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state。</p>
+<li><p>componentWillMount： 组件初始化时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改 state。</p>
 </li>
-<li><p>render： 创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state。</p>
+<li><p>render： 创建虚拟 dom，进行 diff 算法，更新 dom 树都在此进行。此时就不能更改 state。</p>
 </li>
 <li><p>componentDidMount：组件渲染完后调用，整个生命周期只调用一次</p>
 </li>
 </ul>
-<h2 id="变更"><a href="#变更" class="headerlink" title="变更"></a>变更</h2><p>此过程会在this.state或this.props变更时执行<br>期间执行生命周期函数如下：<br>this.state变更</p>
+<h2 id="变更"><a href="#变更" class="headerlink" title="变更"></a>变更</h2><p>此过程会在 this.state 或 this.props 变更时执行<br>期间执行生命周期函数如下：<br>this.state 变更</p>
 <ul>
-<li><p>shouldComponentUpdate(nextProps, nextState)：react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，如果相同则返回false阻止更新，因为相同的属性状态一定会生成相同的dom树，这样就不需要创造新的dom树和旧的dom树进行diff算法对比，节省大量性能，尤其是在dom结构复杂的时候</p>
+<li><p>shouldComponentUpdate(nextProps, nextState)：react 性能优化非常重要的一环。组件接受新的 state 或者 props 时调用，我们可以设置在此对比前后两个 props 和 state 是否相同，如果相同则返回 false 阻止更新，因为相同的属性状态一定会生成相同的 dom 树，这样就不需要创造新的 dom 树和旧的 dom 树进行 diff 算法对比，节省大量性能，尤其是在 dom 结构复杂的时候</p>
 </li>
-<li><p>componentWillUpdate(nextProps, nextState)：组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state</p>
+<li><p>componentWillUpdate(nextProps, nextState)：组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改 state</p>
 </li>
 <li><p>render</p>
 </li>
 <li><p>componentDidUpdate</p>
 </li>
 </ul>
-<p>this.props变更</p>
+<p>this.props 变更</p>
 <ul>
 <li><p>componentWillReceiveProps(nextProps)</p>
 </li>
@@ -368,23 +379,25 @@
 </li>
 </ul>
 <p><img src="http://oogbwnwu9.bkt.clouddn.com/reactlifecircle.png" alt="图例"></p>
-<h1 id="react-Q-amp-A"><a href="#react-Q-amp-A" class="headerlink" title="react Q&amp;A"></a>react Q&amp;A</h1><h2 id="调用-setState-之后发生了什么？"><a href="#调用-setState-之后发生了什么？" class="headerlink" title="调用 setState 之后发生了什么？"></a>调用 setState 之后发生了什么？</h2><p>在代码中调用setState函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程（Reconciliation）。经过调和过程，React 会以相对高效的方式根据新的状态构建 React 元素树并且着手重新渲染整个UI界面。在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</p>
-<h2 id="React-中-Element-与-Component-的区别"><a href="#React-中-Element-与-Component-的区别" class="headerlink" title="React 中 Element 与 Component 的区别"></a>React 中 Element 与 Component 的区别</h2><p>React Element 是描述屏幕上所见内容的数据结构，是对于 UI 的对象表述。典型的 React Element 就是利用 JSX 构建的声明式代码片然后被转化为createElement的调用组合。而 React Component 则是可以接收参数输入并且返回某个 React Element 的函数或者类</p>
-<h2 id="Class-Component-amp-Functional-Component"><a href="#Class-Component-amp-Functional-Component" class="headerlink" title="Class Component&amp;Functional Component"></a>Class Component&amp;Functional Component</h2><p>函数式组件中不包含state以及生命周期函数，只负责视图的部分，数据全靠外部父组件传递props</p>
-<h2 id="React-中-refs-的作用"><a href="#React-中-refs-的作用" class="headerlink" title="React 中 refs 的作用"></a>React 中 refs 的作用</h2><p>设置ref可以获取节点。Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。我们可以为元素添加ref属性然后在回调函数中接受该元素在 DOM 树中的句柄，该值会作为回调函数的第一个参数返回：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleSubmit = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Input Value: "</span>, <span class="keyword">this</span>.input.value)</div><div class="line">  &#125;</div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;input</div><div class="line">          type='text'</div><div class="line">          ref=&#123;(input) =&gt; this.input = input&#125; /&gt;</div><div class="line">        &lt;button type='submit'&gt;Submit&lt;/button&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="react中key的作用"><a href="#react中key的作用" class="headerlink" title="react中key的作用"></a>react中key的作用</h2><p>Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被移除的辅助标识。列表渲染中每一个元素都必须带上key属性</p>
-<h2 id="受控组件-amp-非受控组件"><a href="#受控组件-amp-非受控组件" class="headerlink" title="受控组件&amp;非受控组件"></a>受控组件&amp;非受控组件</h2><p>受控组件（Controlled Component）代指那些交由 React 控制并且所有的表单数据统一存放的组件。譬如下面这段代码中username变量值并没有存放到DOM元素中，而是存放在组件状态数据中。任何时候我们需要改变username变量值时，我们应当调用setState函数进行修改。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ControlledForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  state = &#123;</div><div class="line">    <span class="attr">username</span>: <span class="string">''</span></div><div class="line">  &#125;</div><div class="line">  updateUsername = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      <span class="attr">username</span>: e.target.value,</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">  handleSubmit = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;</div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;input</div><div class="line">          type='text'</div><div class="line">          value=&#123;this.state.username&#125;</div><div class="line">          onChange=&#123;this.updateUsername&#125; /&gt;</div><div class="line">        &lt;button type='submit'&gt;Submit&lt;/button&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>非受控组件则是由DOM保存数据，通过ref来操作节点<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnControlledForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleSubmit = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Input Value: "</span>, <span class="keyword">this</span>.input.value)</div><div class="line">  &#125;</div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;input</div><div class="line">          type='text'</div><div class="line">          ref=&#123;(input) =&gt; this.input = input&#125; /&gt;</div><div class="line">        &lt;button type='submit'&gt;Submit&lt;/button&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="react-Q-amp-A"><a href="#react-Q-amp-A" class="headerlink" title="react Q&amp;A"></a>react Q&amp;A</h1><h2 id="调用-setState-之后发生了什么？"><a href="#调用-setState-之后发生了什么？" class="headerlink" title="调用 setState 之后发生了什么？"></a>调用 setState 之后发生了什么？</h2><p>在代码中调用 setState 函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程（Reconciliation）。经过调和过程，React 会以相对高效的方式根据新的状态构建 React 元素树并且着手重新渲染整个 UI 界面。在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</p>
+<h2 id="React-中-Element-与-Component-的区别"><a href="#React-中-Element-与-Component-的区别" class="headerlink" title="React 中 Element 与 Component 的区别"></a>React 中 Element 与 Component 的区别</h2><p>React Element 是描述屏幕上所见内容的数据结构，是对于 UI 的对象表述。典型的 React Element 就是利用 JSX 构建的声明式代码片然后被转化为 createElement 的调用组合。而 React Component 则是可以接收参数输入并且返回某个 React Element 的函数或者类</p>
+<h2 id="Class-Component-amp-Functional-Component"><a href="#Class-Component-amp-Functional-Component" class="headerlink" title="Class Component&amp;Functional Component"></a>Class Component&amp;Functional Component</h2><p>函数式组件中不包含 state 以及生命周期函数，只负责视图的部分，数据全靠外部父组件传递 props</p>
+<h2 id="React-中-refs-的作用"><a href="#React-中-refs-的作用" class="headerlink" title="React 中 refs 的作用"></a>React 中 refs 的作用</h2><p>设置 ref 可以获取节点。Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。我们可以为元素添加 ref 属性然后在回调函数中接受该元素在 DOM 树中的句柄，该值会作为回调函数的第一个参数返回：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleSubmit = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Input Value: '</span>, <span class="keyword">this</span>.input.value)</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;input type="text" ref=&#123;input =&gt; (this.input = input)&#125; /&gt;</div><div class="line">        &lt;button type="submit"&gt;Submit&lt;/button&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="react-中-key-的作用"><a href="#react-中-key-的作用" class="headerlink" title="react 中 key 的作用"></a>react 中 key 的作用</h2><p>Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被移除的辅助标识。列表渲染中每一个元素都必须带上 key 属性</p>
+<h2 id="受控组件-amp-非受控组件"><a href="#受控组件-amp-非受控组件" class="headerlink" title="受控组件&amp;非受控组件"></a>受控组件&amp;非受控组件</h2><p>受控组件（Controlled Component）代指那些交由 React 控制并且所有的表单数据统一存放的组件。譬如下面这段代码中 username 变量值并没有存放到 DOM 元素中，而是存放在组件状态数据中。任何时候我们需要改变 username 变量值时，我们应当调用 setState 函数进行修改。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ControlledForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  state = &#123;</div><div class="line">    <span class="attr">username</span>: <span class="string">''</span></div><div class="line">  &#125;</div><div class="line">  updateUsername = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      <span class="attr">username</span>: e.target.value,</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">  handleSubmit = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;</div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;input</div><div class="line">          type='text'</div><div class="line">          value=&#123;this.state.username&#125;</div><div class="line">          onChange=&#123;this.updateUsername&#125; /&gt;</div><div class="line">        &lt;button type='submit'&gt;Submit&lt;/button&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>非受控组件则是由 DOM 保存数据，通过 ref 来操作节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnControlledForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  handleSubmit = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Input Value: "</span>, <span class="keyword">this</span>.input.value)</div><div class="line">  &#125;</div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</div><div class="line">        &lt;input</div><div class="line">          type='text'</div><div class="line">          ref=&#123;(input) =&gt; this.input = input&#125; /&gt;</div><div class="line">        &lt;button type='submit'&gt;Submit&lt;/button&gt;</div><div class="line">      &lt;/form&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>际开发中我们并不提倡使用非受控组件，因为实际情况下我们需要更多的考虑表单验证、选择性的开启或者关闭按钮点击、强制输入格式等功能支持，而此时我们将数据托管到 React 中有助于我们更好地以声明式的方式完成这些功能</p>
-<h2 id="React-中的事件处理逻辑"><a href="#React-中的事件处理逻辑" class="headerlink" title="React 中的事件处理逻辑"></a>React 中的事件处理逻辑</h2><p>react将浏览器原生时间封装为合成事件（SyntheticEvent）传入设置的事件处理器中。。这里的合成事件提供了与原生事件相同的接口，不过它们屏蔽了底层浏览器的细节差异，保证了行为的一致性。另外有意思的是，React 并没有直接将事件附着到子元素上，而是以单一事件监听器的方式将所有的事件发送到顶层进行处理。这样 React 在更新 DOM 的时候就不需要考虑如何去处理附着在 DOM 上的事件监听器，最终达到优化性能的目的。</p>
-<h2 id="在componentDidMount中发送AJAX请求"><a href="#在componentDidMount中发送AJAX请求" class="headerlink" title="在componentDidMount中发送AJAX请求"></a>在componentDidMount中发送AJAX请求</h2><ul>
+<h2 id="React-中的事件处理逻辑"><a href="#React-中的事件处理逻辑" class="headerlink" title="React 中的事件处理逻辑"></a>React 中的事件处理逻辑</h2><p>react 将浏览器原生时间封装为合成事件（SyntheticEvent）传入设置的事件处理器中。。这里的合成事件提供了与原生事件相同的接口，不过它们屏蔽了底层浏览器的细节差异，保证了行为的一致性。另外有意思的是，React 并没有直接将事件附着到子元素上，而是以单一事件监听器的方式将所有的事件发送到顶层进行处理。这样 React 在更新 DOM 的时候就不需要考虑如何去处理附着在 DOM 上的事件监听器，最终达到优化性能的目的。</p>
+<h2 id="在-componentDidMount-中发送-AJAX-请求"><a href="#在-componentDidMount-中发送-AJAX-请求" class="headerlink" title="在 componentDidMount 中发送 AJAX 请求"></a>在 componentDidMount 中发送 AJAX 请求</h2><ul>
 <li><p>React 下一代调和算法 Fiber 会通过开始或停止渲染的方式优化应用性能，其会影响到 componentWillMount 的触发次数。对于 componentWillMount 这个生命周期函数的调用次数会变得不确定，React 可能会多次频繁调用 componentWillMount。如果我们将 AJAX 请求放到 componentWillMount 函数中，那么显而易见其会被触发多次，自然也就不是好的选择。</p>
 </li>
-<li><p>如果我们将 AJAX 请求放置在生命周期的其他函数中，我们并不能保证请求仅在组件挂载完毕后才会要求响应。如果我们的数据请求在组件挂载之前就完成，并且调用了setState函数将数据添加到组件状态中，对于未挂载的组件则会报错。而在 componentDidMount 函数中进行 AJAX 请求则能有效避免这个问题。</p>
+<li><p>如果我们将 AJAX 请求放置在生命周期的其他函数中，我们并不能保证请求仅在组件挂载完毕后才会要求响应。如果我们的数据请求在组件挂载之前就完成，并且调用了 setState 函数将数据添加到组件状态中，对于未挂载的组件则会报错。而在 componentDidMount 函数中进行 AJAX 请求则能有效避免这个问题。</p>
 </li>
 </ul>
-<h2 id="setState之后发生了些什么"><a href="#setState之后发生了些什么" class="headerlink" title="setState之后发生了些什么"></a>setState之后发生了些什么</h2><p>当调用 setState 时，React会做的第一件事情是将传递给 setState 的对象合并到组件的当前状态。这将启动一个称为和解（reconciliation）的过程。和解（reconciliation）的最终目标是以最有效的方式，根据这个新的状态来更新UI。 为此，React将构建一个新的 React 元素树（您可以将其视为 UI 的对象表示）。</p>
+<h2 id="setState-之后发生了些什么"><a href="#setState-之后发生了些什么" class="headerlink" title="setState 之后发生了些什么"></a>setState 之后发生了些什么</h2><p>当调用 setState 时，React 会做的第一件事情是将传递给 setState 的对象合并到组件的当前状态。这将启动一个称为和解（reconciliation）的过程。和解（reconciliation）的最终目标是以最有效的方式，根据这个新的状态来更新 UI。 为此，React 将构建一个新的 React 元素树（您可以将其视为 UI 的对象表示）。</p>
 <p>一旦有了这个树，为了弄清 UI 如何响应新的状态而改变，React 会将这个新树与上一个元素树相比较（ diff ）。</p>
 <p>通过这样做， React 将会知道发生的确切变化，并且通过了解发生什么变化，只需在绝对必要的情况下进行更新即可最小化 UI 的占用空间。</p>
 
@@ -431,14 +444,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/08/12/webpack功能以及原理/" rel="next" title="webpack功能以及原理">
+                <i class="fa fa-chevron-left"></i> webpack功能以及原理
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/18/函数防抖与节流/" rel="prev" title="函数防抖与节流">
-                函数防抖与节流 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/01/Node的各种知识/" rel="prev" title="node相关的各种知识">
+                node相关的各种知识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -511,7 +528,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -524,7 +541,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -573,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是react"><span class="nav-number">1.</span> <span class="nav-text">什么是react</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react的特点"><span class="nav-number">2.</span> <span class="nav-text">react的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明式"><span class="nav-number">2.1.</span> <span class="nav-text">声明式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diff算法"><span class="nav-number">2.3.</span> <span class="nav-text">diff算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-VDOM？"><span class="nav-number">2.4.</span> <span class="nav-text">什么是 VDOM？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-VDOM-的原因。"><span class="nav-number">2.5.</span> <span class="nav-text">使用 VDOM 的原因。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据驱动"><span class="nav-number">2.6.</span> <span class="nav-text">数据驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件化"><span class="nav-number">2.7.</span> <span class="nav-text">组件化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react生命周期"><span class="nav-number">3.</span> <span class="nav-text">react生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个react组件完整的渲染过程"><span class="nav-number">3.1.</span> <span class="nav-text">一个react组件完整的渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类调用"><span class="nav-number">3.1.1.</span> <span class="nav-text">类调用:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例化"><span class="nav-number">3.1.2.</span> <span class="nav-text">实例化:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变更"><span class="nav-number">3.2.</span> <span class="nav-text">变更</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react-Q-amp-A"><span class="nav-number">4.</span> <span class="nav-text">react Q&A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调用-setState-之后发生了什么？"><span class="nav-number">4.1.</span> <span class="nav-text">调用 setState 之后发生了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-中-Element-与-Component-的区别"><span class="nav-number">4.2.</span> <span class="nav-text">React 中 Element 与 Component 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-Component-amp-Functional-Component"><span class="nav-number">4.3.</span> <span class="nav-text">Class Component&Functional Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-中-refs-的作用"><span class="nav-number">4.4.</span> <span class="nav-text">React 中 refs 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react中key的作用"><span class="nav-number">4.5.</span> <span class="nav-text">react中key的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#受控组件-amp-非受控组件"><span class="nav-number">4.6.</span> <span class="nav-text">受控组件&非受控组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-中的事件处理逻辑"><span class="nav-number">4.7.</span> <span class="nav-text">React 中的事件处理逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在componentDidMount中发送AJAX请求"><span class="nav-number">4.8.</span> <span class="nav-text">在componentDidMount中发送AJAX请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setState之后发生了些什么"><span class="nav-number">4.9.</span> <span class="nav-text">setState之后发生了些什么</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-react"><span class="nav-number">1.</span> <span class="nav-text">什么是 react</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react-的特点"><span class="nav-number">2.</span> <span class="nav-text">react 的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明式"><span class="nav-number">2.1.</span> <span class="nav-text">声明式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟-DOM"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟 DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diff-算法"><span class="nav-number">2.3.</span> <span class="nav-text">diff 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-VDOM？"><span class="nav-number">2.4.</span> <span class="nav-text">什么是 VDOM？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-VDOM-的原因。"><span class="nav-number">2.5.</span> <span class="nav-text">使用 VDOM 的原因。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据驱动"><span class="nav-number">2.6.</span> <span class="nav-text">数据驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件化"><span class="nav-number">2.7.</span> <span class="nav-text">组件化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react-生命周期"><span class="nav-number">3.</span> <span class="nav-text">react 生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个-react-组件完整的渲染过程"><span class="nav-number">3.1.</span> <span class="nav-text">一个 react 组件完整的渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类调用"><span class="nav-number">3.1.1.</span> <span class="nav-text">类调用:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例化"><span class="nav-number">3.1.2.</span> <span class="nav-text">实例化:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变更"><span class="nav-number">3.2.</span> <span class="nav-text">变更</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react-Q-amp-A"><span class="nav-number">4.</span> <span class="nav-text">react Q&A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调用-setState-之后发生了什么？"><span class="nav-number">4.1.</span> <span class="nav-text">调用 setState 之后发生了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-中-Element-与-Component-的区别"><span class="nav-number">4.2.</span> <span class="nav-text">React 中 Element 与 Component 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-Component-amp-Functional-Component"><span class="nav-number">4.3.</span> <span class="nav-text">Class Component&Functional Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-中-refs-的作用"><span class="nav-number">4.4.</span> <span class="nav-text">React 中 refs 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-中-key-的作用"><span class="nav-number">4.5.</span> <span class="nav-text">react 中 key 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#受控组件-amp-非受控组件"><span class="nav-number">4.6.</span> <span class="nav-text">受控组件&非受控组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-中的事件处理逻辑"><span class="nav-number">4.7.</span> <span class="nav-text">React 中的事件处理逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-componentDidMount-中发送-AJAX-请求"><span class="nav-number">4.8.</span> <span class="nav-text">在 componentDidMount 中发送 AJAX 请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setState-之后发生了些什么"><span class="nav-number">4.9.</span> <span class="nav-text">setState 之后发生了些什么</span></a></li></ol></li></ol></div>
             
 
           </div>

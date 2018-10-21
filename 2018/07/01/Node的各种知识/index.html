@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-tag," />
+  <meta name="keywords" content="JavaScript,Node," />
 
 
 
@@ -61,17 +61,17 @@
 
 
 
-<meta name="description" content="欢迎来到莲子的小窝^_^">
-<meta name="keywords" content="-tag">
+<meta name="description" content="什么是 NodeNode 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。">
+<meta name="keywords" content="JavaScript,Node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="First blog">
-<meta property="og:url" content="http://renkosky.me/2017/04/15/First-blog/index.html">
+<meta property="og:title" content="node相关的各种知识">
+<meta property="og:url" content="http://renkosky.me/2018/07/01/Node的各种知识/index.html">
 <meta property="og:site_name" content="Renkosky's Home">
-<meta property="og:description" content="欢迎来到莲子的小窝^_^">
-<meta property="og:updated_time" content="2017-04-15T15:06:13.993Z">
+<meta property="og:description" content="什么是 NodeNode 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。">
+<meta property="og:updated_time" content="2018-10-21T15:53:07.487Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="First blog">
-<meta name="twitter:description" content="欢迎来到莲子的小窝^_^">
+<meta name="twitter:title" content="node相关的各种知识">
+<meta name="twitter:description" content="什么是 NodeNode 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。">
 
 
 
@@ -99,13 +99,13 @@
 
 
 
-  <link rel="canonical" href="http://renkosky.me/2017/04/15/First-blog/"/>
+  <link rel="canonical" href="http://renkosky.me/2018/07/01/Node的各种知识/"/>
 
 
 
 
 
-  <title> First blog | Renkosky's Home </title>
+  <title> node相关的各种知识 | Renkosky's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +224,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2017/04/15/First-blog/">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/07/01/Node的各种知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Renko">
@@ -245,7 +245,7 @@
             
             
               
-                First blog
+                node相关的各种知识
               
             
           </h1>
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T01:07:23+08:00">
-                2017-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T14:11:10+08:00">
+                2018-07-01
               </time>
             
 
@@ -296,7 +296,13 @@
       
 
       
-        <p>欢迎来到莲子的小窝^_^</p>
+        <h1 id="什么是-Node"><a href="#什么是-Node" class="headerlink" title="什么是 Node"></a>什么是 Node</h1><p>Node 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。</p>
+<a id="more"></a>
+<h1 id="Node-内部机制"><a href="#Node-内部机制" class="headerlink" title="Node 内部机制"></a>Node 内部机制</h1><h2 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h2><p>回调就是将函数作为另一个函数的参数传入，并且可以被执行，本质上是一个高阶函数<br>回调方法和主线程处于同一层级，比如主线程发起了一个系统底层调用，那操作系统转而去执行这个系统调用，调用结束后又回到主线程上调用其后的方法</p>
+<h2 id="异步-回调：实现高并发"><a href="#异步-回调：实现高并发" class="headerlink" title="异步+回调：实现高并发"></a>异步+回调：实现高并发</h2><p>在异步过程中。node 遇到 io 操作时会发起一个调用继续向下执行，io 操作完成后再执行对应回调函数的回调函数，因此 nodejs 虽然时单线程，但也能支持高并发。</p>
+<h2 id="常用-API"><a href="#常用-API" class="headerlink" title="常用 API"></a>常用 API</h2><p>path.resolve 方法用于将相对路径转为绝对路径。</p>
+<p>它可以接受多个参数，依次表示所要进入的路径，直到将最后一个参数转为绝对路径。如果根据参数无法得到绝对路径，就以当前所在路径作为基准。除了根目录，该方法的返回值都不带尾部的斜杠。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 格式</span></div><div class="line">path.resolve([<span class="keyword">from</span> ...], to)</div><div class="line"></div><div class="line"><span class="comment">// 实例</span></div><div class="line">path.resolve(<span class="string">'foo/bar'</span>, <span class="string">'/tmp/file/'</span>, <span class="string">'..'</span>, <span class="string">'a/../subfile'</span>)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -326,7 +332,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/tag/" rel="tag"># -tag</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Node/" rel="tag"># Node</a>
           
         </div>
       
@@ -339,8 +347,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/15/记一次windows中Hexo博客的搭建-伪教程/" rel="next" title="记一次windows中Hexo博客的搭建-伪教程">
-                <i class="fa fa-chevron-left"></i> 记一次windows中Hexo博客的搭建-伪教程
+              <a href="/2018/07/01/React知识点总结/" rel="next" title="React知识点总结">
+                <i class="fa fa-chevron-left"></i> React知识点总结
               </a>
             
           </div>
@@ -349,8 +357,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/15/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/18/函数防抖与节流/" rel="prev" title="函数防抖与节流">
+                函数防抖与节流 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -398,8 +406,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -466,6 +483,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Node"><span class="nav-number">1.</span> <span class="nav-text">什么是 Node</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Node-内部机制"><span class="nav-number">2.</span> <span class="nav-text">Node 内部机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回调"><span class="nav-number">2.1.</span> <span class="nav-text">回调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步-回调：实现高并发"><span class="nav-number">2.2.</span> <span class="nav-text">异步+回调：实现高并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用-API"><span class="nav-number">2.3.</span> <span class="nav-text">常用 API</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
