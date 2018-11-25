@@ -297,16 +297,17 @@
 
       
         
-          
-            <h1 id="ansyc-await"><a href="#ansyc-await" class="headerlink" title="ansyc await"></a>ansyc await</h1><p>Generator 语法糖</p>
-<p>一个函数如果加上 async ，那么该函数就会返回一个 Promise，可以使用 then 方法添加回调函数。当函数执行的时候，一旦遇到 await 就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。</p>
-<p>async 函数返回的 Promise 对象，必须等到内部所有 await 命令后面的 Promise 对象执行完，才会发生状态改变，除非遇到 return 语句或者抛出错误。也就是说，只有 async 函数内部的异步操作执行完，才会执行 then 方法指定的回调函数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getTitle</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> fetch(url)</div><div class="line">  <span class="keyword">let</span> html = <span class="keyword">await</span> response.text()</div><div class="line">  <span class="keyword">return</span> html.match(<span class="regexp">/&lt;title&gt;([\s\S]+)&lt;\/title&gt;/i</span>)[<span class="number">1</span>]</div><div class="line">&#125;</div><div class="line">getTitle(<span class="string">'https://tc39.github.io/ecma262/'</span>).then(<span class="built_in">console</span>.log)</div></pre></td></tr></table></figure>
-<p>只要一个 await 语句后面的 Promise 变为 reject，那么整个 async 函数都会中断执行。</p>
-<p>有时，我们希望即使前一个异步操作失败，也不要中断后面的异步操作。这时可以将第一个 await 放在 try…catch 结构里面，这样不管这个异步操作是否成功，第二个 await 都会执行。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">await</span> <span class="built_in">Promise</span>.reject(<span class="string">'出错了'</span>)</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;&#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="string">'hello world'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">f().then(<span class="function"><span class="params">v</span> =&gt;</span> <span class="built_in">console</span>.log(v))</div></pre></td></tr></table></figure>
-
-          
+          <h1 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h1><p>ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过 class 关键字，可以定义类。</p>
+<p>基本上，ES6 的 class 可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(x, y) &#123;</div><div class="line">    <span class="keyword">this</span>.x = x</div><div class="line">    <span class="keyword">this</span>.y = y</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  toString() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.x&#125;</span>,<span class="subst">$&#123;<span class="keyword">this</span>.y&#125;</span>`</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>constructor 方法是类的默认方法，通过 new 命令生成对象实例时，自动调用该方法。一个类必须有 constructor 方法，如果没有显式定义，一个空的 constructor 方法会被默认添加。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/12/es6中的一些问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -425,12 +426,140 @@
       
         
           <h1 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h1><p>webpack 中一切皆为模块。由于 webpack 不支持 js 以外的文件，因此项目中的 css，字体等都会通过不同的 loaders 压缩打包成一个 js，公共的代码抽离，也可以指定部分单独打包。</p>
+<p>#打包原理</p>
+<p>webpack只是一个打包模块的机制，只是把依赖的模块转化成可以代表这些包的静态文件。并不是什么commonjs或者amd之类的模块化规范。webpack就是识别你的 入口文件。识别你的模块依赖，来打包你的代码。至于你的代码使用的是commonjs还是amd或者es6的import。webpack都会对其进行分析。来获取代码的依赖。webpack做的就是分析代码。转换代码，编译代码，输出代码。webpack本身是一个node的模块，所以webpack.config.js是以commonjs形式书写的(node中的模块化是commonjs规范的)</p>
+<p>webpack中每个模块有一个唯一的id，是从0开始递增的。整个打包后的bundle.js是一个匿名函数自执行。参数则为一个数组。数组的每一项都为个function。function的内容则为每个模块的内容，并按照require的顺序排列。</p>
 <h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><h2 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h2><p>方便引用第三方模块、让模块更容易复用、避免全局注入导致的冲突、避免重复加载或加载不需要的模块。</p>
 <p>例如在一个页面中，我引用了 a,b,c 三个 js 文件，他们互相之间有个字的依赖关系，所以引入的时候顺序出错就会导致问题。如果<br>使用 webpack 的话就会打成一个文件并自动处理依赖关系<br>WebPack 打包时， 会把有依赖关系的 js 模块（物理形式上，一般表现为一个.js 文件），打包成一个 bundle。而依赖关系是基于 require(‘…’)，而且一般不要相互依赖。</p>
 <h2 id="合并代码"><a href="#合并代码" class="headerlink" title="合并代码"></a>合并代码</h2><p>把各个分散的模块集中打包成大文件，减少 HTTP 的请求链接数，配合 UglifyJS 可以减少、优化代码的体积。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/12/webpack功能以及原理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/07/01/Node的各种知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/01/Node的各种知识/" itemprop="url">
+                  node相关的各种知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T14:11:10+08:00">
+                2018-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="什么是-Node"><a href="#什么是-Node" class="headerlink" title="什么是 Node"></a>什么是 Node</h1><p>Node 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/01/Node的各种知识/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -566,10 +695,13 @@
 </li>
 </ol>
 <p>DIFF 算法在执行时有三个维度，分别是 Tree DIFF、Component DIFF 和 Element DIFF，执行时按顺序依次执行，它们的差异仅仅因为 DIFF 粒度不同、执行先后顺序不同。</p>
+<p>Tree DIFF 是对树的每一层进行遍历，如果某组件不存在了，则会直接销毁。</p>
+<p>第二层进入 Component DIFF，同一类型组件继续比较下去，发现 A 组件没有，所以直接删掉 A、B、C 组件</p>
+<p>Element DIFF 紧接着以上统一类型组件继续比较下去，常见类型就是列表。同一个列表由旧变新有三种行为，插入、移动和删除，它的比较策略是对于每一个列表指定 key，先将所有列表遍历一遍，确定要新增和删除的，再确定需要移动的。</p>
 <h2 id="什么是-VDOM？"><a href="#什么是-VDOM？" class="headerlink" title="什么是 VDOM？"></a>什么是 VDOM？</h2><p>首先，DOM 文档对象模型(Document Object Model)）是一种对文档进行抽象化的树形结构，文档皆在这个结构中，而 VDOM 则是对 DOM 的抽象，其本身是一个 js 的对象，拥有 dom 的一些属性例如 class，id 等。</p>
 <p>例如 react 中的 VDOM 由 VNODE 组成，其包含：</p>
 <ul>
-<li>标签类型：$$typeof</li>
+<li>标签类型：\$\$typeof</li>
 <li>节点属性：props（包括属性，事件，子节点，类选择器等）</li>
 <li>唯一 ID 值：key</li>
 <li>引用指针：ref<br>在 react 中我们通过 jsx 去编写 js 和 html 的混合，然后通过 babel 插件编译成对象再调用 createElement<br>例子：</li>
@@ -585,131 +717,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/01/React知识点总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/07/01/Node的各种知识/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/07/01/Node的各种知识/" itemprop="url">
-                  node相关的各种知识
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T14:11:10+08:00">
-                2018-07-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="什么是-Node"><a href="#什么是-Node" class="headerlink" title="什么是 Node"></a>什么是 Node</h1><p>Node 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/01/Node的各种知识/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1657,6 +1664,12 @@
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
   </a>
+</div>
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </div>
 
 
