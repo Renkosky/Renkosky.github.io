@@ -221,6 +221,169 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/12/22/柯里化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/12/22/柯里化/" itemprop="url">
+                  柯里化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-22T16:45:27+08:00">
+                2018-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  535 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  2 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是柯里化"><a href="#什么是柯里化" class="headerlink" title="什么是柯里化"></a>什么是柯里化</h2><p>柯里化可以说是一种函数式编程的过程，其主要目的就是把多个参数的函数转换成一个只接受一个单一参数的函数。被柯里化的函数会返回一个新的函数并接受新的一个参数<br>在所有的参数用完之后，它才会去执行得到最后的结果</p>
+<h2 id="实现柯里化"><a href="#实现柯里化" class="headerlink" title="实现柯里化"></a>实现柯里化</h2><p>一个常见又简单的例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b, c</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a + b + c</div><div class="line">&#125;</div><div class="line"><span class="comment">//curryadd</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryadd</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">b</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> a + b + c</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">curryadd(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>) <span class="comment">//6</span></div></pre></td></tr></table></figure>
+<p>通过闭包的形式把新的函数 return 出来，这种方式一看就懂，但是如果一开始不知道参数数量就没法这么写了，所以我们可以改写成这样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">func</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>)</div><div class="line">  <span class="comment">//新建_func函数作为返回值</span></div><div class="line">  <span class="keyword">var</span> _func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//参数长度为0，执行func函数，完成该函数的功能</span></div><div class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length === <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">return</span> func.apply(<span class="keyword">this</span>, args)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">//否则，存储参数到闭包中，返回本函数</span></div><div class="line">      ;[].push.apply(args, <span class="built_in">arguments</span>)</div><div class="line">      <span class="keyword">return</span> _func</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> _func</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>解释一下这个函数，argments 中保存着函数的参数，.length 方法可以获取到参数个数，当还有剩余参数的时候，就把参数合并，返回新函数，如果参数填入完整就调用。</p>
+<p>一个更加简洁的版本</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> curry = <span class="function"><span class="params">fn</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (fn.length &lt;= <span class="number">1</span>) <span class="keyword">return</span> fn</div><div class="line">  <span class="keyword">const</span> generator = <span class="function"><span class="params">args</span> =&gt;</span></div><div class="line">    args.length === fn.length ? fn(...args) : <span class="function"><span class="params">arg</span> =&gt;</span> generator([...args, arg])</div><div class="line">  <span class="keyword">return</span> generator([], fn.length)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>这是一个计算商品价格的函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">discount</span>(<span class="params">price, discount</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> price * discount</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> price = discount(<span class="number">500</span>, <span class="number">0.1</span>) <span class="comment">// $50</span></div><div class="line"><span class="comment">// $500 - $50 = $450</span></div><div class="line"><span class="keyword">const</span> price = discount(<span class="number">1500</span>, <span class="number">0.1</span>) <span class="comment">// $150</span></div><div class="line"><span class="comment">// $1,500 - $150 = $1,350</span></div><div class="line"><span class="keyword">const</span> price = discount(<span class="number">2000</span>, <span class="number">0.1</span>) <span class="comment">// $200</span></div><div class="line"><span class="comment">// $2,000 - $200 = $1,800</span></div><div class="line"><span class="keyword">const</span> price = discount(<span class="number">50</span>, <span class="number">0.1</span>) <span class="comment">// $5</span></div><div class="line"><span class="comment">// $50 - $5 = $45</span></div><div class="line"><span class="keyword">const</span> price = discount(<span class="number">5000</span>, <span class="number">0.1</span>) <span class="comment">// $500</span></div><div class="line"><span class="comment">// $5,000 - $500 = $4,500</span></div><div class="line"><span class="keyword">const</span> price = discount(<span class="number">300</span>, <span class="number">0.1</span>) <span class="comment">// $30</span></div><div class="line"><span class="comment">// $300 - $30 = $270</span></div></pre></td></tr></table></figure>
+<p>其实折扣力度都一样，变化的只是原价格，我们利用 curry 改写一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">fucntion price(discount)&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">price</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> discount*price</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> tenPercentDiscount = discount(<span class="number">0.1</span>);</div></pre></td></tr></table></figure>
+<p>这下我们只用输入价格就 ok 了</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/11/25/Canvas学习笔记（1）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -354,6 +517,162 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arcTo(x1, y1, x2, y2, radius)</div></pre></td></tr></table></figure>
 <p>根据给定的控制点和半径画一段圆弧，再以直线连接两个控制点。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">circleCtx.beginPath()</div><div class="line">circleCtx.arc(<span class="number">200</span>,<span class="number">100</span>,<span class="number">50</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI)</div><div class="line">circleCtx.fill()</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/10/14/实现懒加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/10/14/实现懒加载/" itemprop="url">
+                  实现懒加载
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-14T15:55:38+08:00">
+                2018-10-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  279 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对页面加载速度影响最大的就是图片，一张普通的图片可以达到几 M 的大小，因此大量加载图片可能需要很长时间。因此我们可以让不在可视范围内的图片加载，等到<br>滚到那个区域时再加载图片，这样可以提升页面的加载速度</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>img 标签有一个 src 标签先把他指向一个小图片或者空的字符串，然后自定义一个属性 src</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">img src=<span class="string">"default.jpg"</span> data-src=<span class="string">"http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg"</span> /&gt;</div></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>当元素进入可见区域时，就把当前元素的 src 替换为 data-src</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazyload</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//监听页面滚动事件</span></div><div class="line">  <span class="keyword">var</span> seeHeight = <span class="built_in">document</span>.documentElement.clientHeight <span class="comment">//可见区域高度</span></div><div class="line">  <span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop <span class="comment">//滚动条距离顶部高度</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = n; i &lt; num; i++) &#123;</div><div class="line">    <span class="keyword">if</span> (img[i].offsetTop &lt; seeHeight + scrollTop) &#123;</div><div class="line">      <span class="keyword">if</span> (img[i].getAttribute(<span class="string">'src'</span>) == <span class="string">'default.jpg'</span>) &#123;</div><div class="line">        img[i].src = img[i].getAttribute(<span class="string">'data-src'</span>)</div><div class="line">      &#125;</div><div class="line">      n = i + <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.addEventlistener(<span class="string">'scroll'</span>, lazyload)</div></pre></td></tr></table></figure>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>可以使用防抖函数对其进行优化。防抖参照之前的文章</p>
+
           
         
       
@@ -846,7 +1165,7 @@
 <li>唯一 ID 值：key</li>
 <li>引用指针：ref<br>在 react 中我们通过 jsx 去编写 js 和 html 的混合，然后通过 babel 插件编译成对象再调用 createElement<br>例子：</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">className</span>=<span class="string">"greeting"</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = &lt;h1 className="greeting"&gt;Hello, world!&lt;/h1&gt;</div></pre></td></tr></table></figure>
 <p>编译为：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//jsx书写的代码会变成js对象然后调用createElement把其作为参数传入</span></div><div class="line"><span class="keyword">const</span> element = React.createElement(</div><div class="line">  <span class="string">'h1'</span>,</div><div class="line">  &#123; <span class="attr">className</span>: <span class="string">'greeting'</span> &#125;,</div><div class="line">  <span class="string">'Hello, world!'</span></div><div class="line">)</div></pre></td></tr></table></figure>
 <p>最后返回</p>
@@ -1521,324 +1840,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/11/http相关知识/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/03/11/http相关知识/" itemprop="url">
-                  http相关知识
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T14:20:21+08:00">
-                2018-03-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2k 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  7 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="HTTP-报文"><a href="#HTTP-报文" class="headerlink" title="HTTP 报文"></a>HTTP 报文</h1><p>HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。</p>
-<h2 id="报文的组成部分"><a href="#报文的组成部分" class="headerlink" title="报文的组成部分"></a>报文的组成部分</h2><ul>
-<li>起始行</li>
-<li>头部</li>
-<li>主体
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/11/http相关知识/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/05/作用域链，闭包/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/03/05/作用域链，闭包/" itemprop="url">
-                  作用域链，闭包
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T14:07:55+08:00">
-                2018-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2.2k 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  8 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>执行环境定义了变量或函数有权访问其他数据，决定他们各自的行为。每个环境中都有一个与之关联的<b>变量对象（variable object）</b>,环境中定义的所有变量和函数都保存在变量对象中，解析器会在处理数据时在后台使用它。</p>
-<p>全局执行环境是最外层的执行环境，web浏览器中默认是window对象，因此所有的全局变量和对象都是作为window对象的属性创建的。环境中的代码执行完毕后，环境会被销毁，其中保存的变量和函数也会销毁。</p>
-<p>每个函数都有自己的执行环境。当执行流进入一个函数是，函数的环境就会被推入一个环境栈，函数执行完成后再出栈。</p>
-<p>代码在一个环境中执行的时候会创建一个作用域链，它保证了对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行代码所在环境的变量对象。如果环境是函数则将其活动对象作为变量对象。活动对象最开始只包含一个变量：arguments对象。作用域链下一个变量对象就是外部环境，再下一个就是外部的外部，一直到全局。</p>
-<p>标识符解析就是沿着作用域链一级一级搜索标识符的过程，总是从前端开始，向后回溯。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/05/作用域链，闭包/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1888,7 +1889,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1901,7 +1902,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,Node," />
+  <meta name="keywords" content="-Javascript," />
 
 
 
@@ -61,17 +61,17 @@
 
 
 
-<meta name="description" content="什么是 NodeNode 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。">
-<meta name="keywords" content="JavaScript,Node">
+<meta name="description" content="对页面加载速度影响最大的就是图片，一张普通的图片可以达到几 M 的大小，因此大量加载图片可能需要很长时间。因此我们可以让不在可视范围内的图片加载，等到滚到那个区域时再加载图片，这样可以提升页面的加载速度 原理img 标签有一个 src 标签先把他指向一个小图片或者空的字符串，然后自定义一个属性 src 1img src=&quot;default.jpg&quot; data-src=&quot;http://ww4.sina">
+<meta name="keywords" content="-Javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node相关的各种知识">
-<meta property="og:url" content="http://renkosky.me/2018/07/01/Node的各种知识/index.html">
+<meta property="og:title" content="实现懒加载">
+<meta property="og:url" content="http://renkosky.me/2018/10/14/实现懒加载/index.html">
 <meta property="og:site_name" content="Renkosky's Home">
-<meta property="og:description" content="什么是 NodeNode 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。">
-<meta property="og:updated_time" content="2018-10-21T15:53:07.487Z">
+<meta property="og:description" content="对页面加载速度影响最大的就是图片，一张普通的图片可以达到几 M 的大小，因此大量加载图片可能需要很长时间。因此我们可以让不在可视范围内的图片加载，等到滚到那个区域时再加载图片，这样可以提升页面的加载速度 原理img 标签有一个 src 标签先把他指向一个小图片或者空的字符串，然后自定义一个属性 src 1img src=&quot;default.jpg&quot; data-src=&quot;http://ww4.sina">
+<meta property="og:updated_time" content="2018-12-23T15:25:41.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node相关的各种知识">
-<meta name="twitter:description" content="什么是 NodeNode 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。">
+<meta name="twitter:title" content="实现懒加载">
+<meta name="twitter:description" content="对页面加载速度影响最大的就是图片，一张普通的图片可以达到几 M 的大小，因此大量加载图片可能需要很长时间。因此我们可以让不在可视范围内的图片加载，等到滚到那个区域时再加载图片，这样可以提升页面的加载速度 原理img 标签有一个 src 标签先把他指向一个小图片或者空的字符串，然后自定义一个属性 src 1img src=&quot;default.jpg&quot; data-src=&quot;http://ww4.sina">
 
 
 
@@ -99,13 +99,13 @@
 
 
 
-  <link rel="canonical" href="http://renkosky.me/2018/07/01/Node的各种知识/"/>
+  <link rel="canonical" href="http://renkosky.me/2018/10/14/实现懒加载/"/>
 
 
 
 
 
-  <title> node相关的各种知识 | Renkosky's Home </title>
+  <title> 实现懒加载 | Renkosky's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +224,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/07/01/Node的各种知识/">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/10/14/实现懒加载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Renko">
@@ -245,7 +245,7 @@
             
             
               
-                node相关的各种知识
+                实现懒加载
               
             
           </h1>
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-01T14:11:10+08:00">
-                2018-07-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-14T15:55:38+08:00">
+                2018-10-14
               </time>
             
 
@@ -291,7 +291,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  353 字
+                  279 字
                 </span>
               
 
@@ -326,13 +326,12 @@
       
 
       
-        <h1 id="什么是-Node"><a href="#什么是-Node" class="headerlink" title="什么是 Node"></a>什么是 Node</h1><p>Node 是一个 Javascript 运行时，运行时（runtime）可以当作一种编程语言的运行环境，其中包括了运行代码需要的编译器以及操作系统的底层支持。</p>
-<a id="more"></a>
-<h1 id="Node-内部机制"><a href="#Node-内部机制" class="headerlink" title="Node 内部机制"></a>Node 内部机制</h1><h2 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h2><p>回调就是将函数作为另一个函数的参数传入，并且可以被执行，本质上是一个高阶函数<br>回调方法和主线程处于同一层级，比如主线程发起了一个系统底层调用，那操作系统转而去执行这个系统调用，调用结束后又回到主线程上调用其后的方法</p>
-<h2 id="异步-回调：实现高并发"><a href="#异步-回调：实现高并发" class="headerlink" title="异步+回调：实现高并发"></a>异步+回调：实现高并发</h2><p>在异步过程中。node 遇到 io 操作时会发起一个调用继续向下执行，io 操作完成后再执行对应回调函数的回调函数，因此 nodejs 虽然时单线程，但也能支持高并发。</p>
-<h2 id="常用-API"><a href="#常用-API" class="headerlink" title="常用 API"></a>常用 API</h2><p>path.resolve 方法用于将相对路径转为绝对路径。</p>
-<p>它可以接受多个参数，依次表示所要进入的路径，直到将最后一个参数转为绝对路径。如果根据参数无法得到绝对路径，就以当前所在路径作为基准。除了根目录，该方法的返回值都不带尾部的斜杠。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 格式</span></div><div class="line">path.resolve([<span class="keyword">from</span> ...], to)</div><div class="line"></div><div class="line"><span class="comment">// 实例</span></div><div class="line">path.resolve(<span class="string">'foo/bar'</span>, <span class="string">'/tmp/file/'</span>, <span class="string">'..'</span>, <span class="string">'a/../subfile'</span>)</div></pre></td></tr></table></figure>
+        <p>对页面加载速度影响最大的就是图片，一张普通的图片可以达到几 M 的大小，因此大量加载图片可能需要很长时间。因此我们可以让不在可视范围内的图片加载，等到<br>滚到那个区域时再加载图片，这样可以提升页面的加载速度</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>img 标签有一个 src 标签先把他指向一个小图片或者空的字符串，然后自定义一个属性 src</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">img src=<span class="string">"default.jpg"</span> data-src=<span class="string">"http://ww4.sinaimg.cn/large/006y8mN6gw1fa5obmqrmvj305k05k3yh.jpg"</span> /&gt;</div></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>当元素进入可见区域时，就把当前元素的 src 替换为 data-src</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazyload</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//监听页面滚动事件</span></div><div class="line">  <span class="keyword">var</span> seeHeight = <span class="built_in">document</span>.documentElement.clientHeight <span class="comment">//可见区域高度</span></div><div class="line">  <span class="keyword">var</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop <span class="comment">//滚动条距离顶部高度</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = n; i &lt; num; i++) &#123;</div><div class="line">    <span class="keyword">if</span> (img[i].offsetTop &lt; seeHeight + scrollTop) &#123;</div><div class="line">      <span class="keyword">if</span> (img[i].getAttribute(<span class="string">'src'</span>) == <span class="string">'default.jpg'</span>) &#123;</div><div class="line">        img[i].src = img[i].getAttribute(<span class="string">'data-src'</span>)</div><div class="line">      &#125;</div><div class="line">      n = i + <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.addEventlistener(<span class="string">'scroll'</span>, lazyload)</div></pre></td></tr></table></figure>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>可以使用防抖函数对其进行优化。防抖参照之前的文章</p>
 
       
     </div>
@@ -362,9 +361,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-          
-            <a href="/tags/Node/" rel="tag"># Node</a>
+            <a href="/tags/Javascript/" rel="tag"># -Javascript</a>
           
         </div>
       
@@ -377,8 +374,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/12/webpack功能以及原理/" rel="next" title="webpack功能以及原理">
-                <i class="fa fa-chevron-left"></i> webpack功能以及原理
+              <a href="/2018/11/25/Canvas学习笔记（1）/" rel="next" title="Canvas学习笔记（1）">
+                <i class="fa fa-chevron-left"></i> Canvas学习笔记（1）
               </a>
             
           </div>
@@ -387,8 +384,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/01/React知识点总结/" rel="prev" title="React知识点总结">
-                React知识点总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/12/es6中的一些问题/" rel="prev" title="es6中的一些问题">
+                es6中的一些问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -523,7 +520,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Node"><span class="nav-number">1.</span> <span class="nav-text">什么是 Node</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Node-内部机制"><span class="nav-number">2.</span> <span class="nav-text">Node 内部机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回调"><span class="nav-number">2.1.</span> <span class="nav-text">回调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步-回调：实现高并发"><span class="nav-number">2.2.</span> <span class="nav-text">异步+回调：实现高并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用-API"><span class="nav-number">2.3.</span> <span class="nav-text">常用 API</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a></li></ol></div>
             
 
           </div>
