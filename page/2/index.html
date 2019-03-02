@@ -221,6 +221,479 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/06/18/函数防抖与节流/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/06/18/函数防抖与节流/" itemprop="url">
+                  函数防抖与节流
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T22:38:27+08:00">
+                2018-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1.3k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h2><blockquote>
+<p>函数防抖就是让某个函数在上一次执行后，满足等待某个时间内不再触发此函数后再执行，而在这个等待时间内再次触发此函数，等待时间会重新计算。</p>
+</blockquote>
+<p>当用户在进行一系列的操作的时候例如输入一串字符，这时如果需求中需要我们去按照用户的输入做请求，比如联想输入时，有可能就会导致多次函数的调用，而事实上我们只需要最后的那个值去发请求，函数防抖就可以解决这个问题。</p>
+<h3 id="undersource-js"><a href="#undersource-js" class="headerlink" title="undersource.js"></a>undersource.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">_.debounce = <span class="function"><span class="keyword">function</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> timeout, args, context, timestamp, result</div><div class="line"></div><div class="line">  <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> last = _.now() - timestamp <span class="comment">//_.now(),一个优化的方式来获得一个当前时间的整数时间戳</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> (last &lt; wait &amp;&amp; last &gt;= <span class="number">0</span>) &#123;</div><div class="line">      timeout = setTimeout(later, wait - last)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      timeout = <span class="literal">null</span></div><div class="line">      <span class="keyword">if</span> (!immediate) &#123;</div><div class="line">        result = func.apply(context, args)</div><div class="line">        <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    context = <span class="keyword">this</span></div><div class="line">    args = <span class="built_in">arguments</span></div><div class="line">    timestamp = _.now()</div><div class="line">    <span class="keyword">var</span> callNow = immediate &amp;&amp; !timeout</div><div class="line">    <span class="keyword">if</span> (!timeout) timeout = setTimeout(later, wait)</div><div class="line">    <span class="keyword">if</span> (callNow) &#123;</div><div class="line">      result = func.apply(context, args)</div><div class="line">      context = args = <span class="literal">null</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> result</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>源码中 debounce 函数中的 later 是 setTimeout 中的回调函数，last 是调用后过了多少时间，如果 last 比 await 小就递归调用 later，等待时间重新计算。<br>如果设置了 immediate 就会立即触发一次函数，之后再计算时间。</p>
+<h3 id="另一种实现"><a href="#另一种实现" class="headerlink" title="另一种实现"></a>另一种实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这个是用来获取当前时间戳的</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">now</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> +<span class="keyword">new</span> <span class="built_in">Date</span>()</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 防抖函数，返回函数连续调用时，空闲时间必须大于或等于 wait，func 才会执行</div><div class="line"> *</div><div class="line"> * @param  &#123;function&#125; func        回调函数</div><div class="line"> * @param  &#123;number&#125;   wait        表示时间窗口的间隔</div><div class="line"> * @param  &#123;boolean&#125;  immediate   设置为ture时，是否立即调用函数</div><div class="line"> * @return &#123;function&#125;             返回客户调用函数</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait = <span class="number">50</span>, immediate = true</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> timer, context, args</div><div class="line"></div><div class="line">  <span class="comment">// 延迟执行函数</span></div><div class="line">  <span class="keyword">const</span> later = <span class="function"><span class="params">()</span> =&gt;</span></div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      <span class="comment">// 延迟函数执行完毕，清空缓存的定时器序号</span></div><div class="line">      timer = <span class="literal">null</span></div><div class="line">      <span class="comment">// 延迟执行的情况下，函数会在延迟函数中执行</span></div><div class="line">      <span class="comment">// 使用到之前缓存的参数和上下文</span></div><div class="line">      <span class="keyword">if</span> (!immediate) &#123;</div><div class="line">        func.apply(context, args)</div><div class="line">        context = args = <span class="literal">null</span></div><div class="line">      &#125;</div><div class="line">    &#125;, wait)</div><div class="line"></div><div class="line">  <span class="comment">// 这里返回的函数是每次实际调用的函数</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...params</span>) </span>&#123;</div><div class="line">    <span class="comment">// 如果没有创建延迟执行函数（later），就创建一个</span></div><div class="line">    <span class="keyword">if</span> (!timer) &#123;</div><div class="line">      timer = later()</div><div class="line">      <span class="comment">// 如果是立即执行，调用函数</span></div><div class="line">      <span class="comment">// 否则缓存参数和调用上下文</span></div><div class="line">      <span class="keyword">if</span> (immediate) &#123;</div><div class="line">        func.apply(<span class="keyword">this</span>, params)</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        context = <span class="keyword">this</span></div><div class="line">        args = params</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 如果已有延迟执行函数（later），调用的时候清除原来的并重新设定一个</span></div><div class="line">      <span class="comment">// 这样做延迟函数会重新计时</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      clearTimeout(timer)</div><div class="line">      timer = later()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h2><blockquote>
+<p>函数节流就是让某个函数每间隔一段时间执行防止多次调用</p>
+</blockquote>
+<p>简单版本</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">method, context,wait=<span class="number">100</span></span>) </span>&#123;</div><div class="line">    clearTimeout(methor.tId);</div><div class="line">    method.tId = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        method.call(context);</div><div class="line">    &#125;， wait);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * underscore 节流函数，返回函数连续调用时，func 执行频率限定为 次 / wait</div><div class="line"> *</div><div class="line"> * @param  &#123;function&#125;   func      回调函数</div><div class="line"> * @param  &#123;number&#125;     wait      表示时间窗口的间隔</div><div class="line"> * @param  &#123;object&#125;     options   如果想忽略开始函数的的调用，传入&#123;leading: false&#125;。</div><div class="line"> *                                如果想忽略结尾函数的调用，传入&#123;trailing: false&#125;</div><div class="line"> *                                两者不能共存，否则函数不能执行</div><div class="line"> * @return &#123;function&#125;             返回客户调用函数</div><div class="line"> */</div><div class="line">_.throttle = <span class="function"><span class="keyword">function</span>(<span class="params">func, wait, options</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> context, args, result</div><div class="line">  <span class="keyword">var</span> timeout = <span class="literal">null</span></div><div class="line">  <span class="comment">// 之前的时间戳</span></div><div class="line">  <span class="keyword">var</span> previous = <span class="number">0</span></div><div class="line">  <span class="comment">// 如果 options 没传则设为空对象</span></div><div class="line">  <span class="keyword">if</span> (!options) options = &#123;&#125;</div><div class="line">  <span class="comment">// 定时器回调函数</span></div><div class="line">  <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 如果设置了 leading，就将 previous 设为 0</span></div><div class="line">    <span class="comment">// 用于下面函数的第一个 if 判断</span></div><div class="line">    previous = options.leading === <span class="literal">false</span> ? <span class="number">0</span> : _.now()</div><div class="line">    <span class="comment">// 置空一是为了防止内存泄漏，二是为了下面的定时器判断</span></div><div class="line">    timeout = <span class="literal">null</span></div><div class="line">    result = func.apply(context, args)</div><div class="line">    <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 获得当前时间戳</span></div><div class="line">    <span class="keyword">var</span> now = _.now()</div><div class="line">    <span class="comment">// 首次进入前者肯定为 true</span></div><div class="line">    <span class="comment">// 如果需要第一次不执行函数</span></div><div class="line">    <span class="comment">// 就将上次时间戳设为当前的</span></div><div class="line">    <span class="comment">// 这样在接下来计算 remaining 的值时会大于0</span></div><div class="line">    <span class="keyword">if</span> (!previous &amp;&amp; options.leading === <span class="literal">false</span>) previous = now</div><div class="line">    <span class="comment">// 计算剩余时间</span></div><div class="line">    <span class="keyword">var</span> remaining = wait - (now - previous)</div><div class="line">    context = <span class="keyword">this</span></div><div class="line">    args = <span class="built_in">arguments</span></div><div class="line">    <span class="comment">// 如果当前调用已经大于上次调用时间 + wait</span></div><div class="line">    <span class="comment">// 或者用户手动调了时间</span></div><div class="line">    <span class="comment">// 如果设置了 trailing，只会进入这个条件</span></div><div class="line">    <span class="comment">// 如果没有设置 leading，那么第一次会进入这个条件</span></div><div class="line">    <span class="comment">// 还有一点，你可能会觉得开启了定时器那么应该不会进入这个 if 条件了</span></div><div class="line">    <span class="comment">// 其实还是会进入的，因为定时器的延时</span></div><div class="line">    <span class="comment">// 并不是准确的时间，很可能你设置了2秒</span></div><div class="line">    <span class="comment">// 但是他需要2.2秒才触发，这时候就会进入这个条件</span></div><div class="line">    <span class="keyword">if</span> (remaining &lt;= <span class="number">0</span> || remaining &gt; wait) &#123;</div><div class="line">      <span class="comment">// 如果存在定时器就清理掉否则会调用二次回调</span></div><div class="line">      <span class="keyword">if</span> (timeout) &#123;</div><div class="line">        clearTimeout(timeout)</div><div class="line">        timeout = <span class="literal">null</span></div><div class="line">      &#125;</div><div class="line">      previous = now</div><div class="line">      result = func.apply(context, args)</div><div class="line">      <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!timeout &amp;&amp; options.trailing !== <span class="literal">false</span>) &#123;</div><div class="line">      <span class="comment">// 判断是否设置了定时器和 trailing</span></div><div class="line">      <span class="comment">// 没有的话就开启一个定时器</span></div><div class="line">      <span class="comment">// 并且不能不能同时设置 leading 和 trailing</span></div><div class="line">      timeout = setTimeout(later, remaining)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/27/深拷贝浅拷贝/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/03/27/深拷贝浅拷贝/" itemprop="url">
+                  深拷贝浅拷贝
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:31:58+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  324 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>JavaScript中，基本类型以及引用类型的值存储方式是不一样的，基本类型的值保存在栈中。而引用类型的值保存在堆中，并在栈中保存一个指向堆的地址。因而在复制中，直接用等号复制引用类型的值只能复制地址，如果修改复制的变量也会影响原变量。如果新开辟一块内存，把引用类型中所有属性复制过去，这种拷贝就是深拷贝，否则就是浅拷贝。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/27/深拷贝浅拷贝/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/15/JavaScript异步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/03/15/JavaScript异步/" itemprop="url">
+                  JavaScript异步
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T15:49:20+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Javascript单线程"><a href="#Javascript单线程" class="headerlink" title="Javascript单线程"></a>Javascript单线程</h1><p>JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/15/JavaScript异步/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/11/http相关知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1331,477 +1804,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2017/08/06/翻译-谷歌职员反对公司现行多样化政策/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/06/翻译-谷歌职员反对公司现行多样化政策/" itemprop="url">
-                  翻译:谷歌职员反对公司现行多样化政策
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T23:27:38+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  379 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Exclusive-Here’s-The-Full-10-Page-Anti-Diversity-Screed-Circulating-Internally-at-Google"><a href="#Exclusive-Here’s-The-Full-10-Page-Anti-Diversity-Screed-Circulating-Internally-at-Google" class="headerlink" title="Exclusive: Here’s The Full 10-Page Anti-Diversity Screed Circulating Internally at Google"></a>Exclusive: Here’s The Full 10-Page Anti-Diversity Screed Circulating Internally at Google</h1><h1 id="独家：在谷歌内部网络流通的反多元化文章的十页完整版"><a href="#独家：在谷歌内部网络流通的反多元化文章的十页完整版" class="headerlink" title="独家：在谷歌内部网络流通的反多元化文章的十页完整版"></a>独家：在谷歌内部网络流通的反多元化文章的十页完整版</h1><blockquote>
-<p>Update 7:25pm ET: Google’s new Vice President of Diversity, Integrity &amp; Governance Danielle Brown has issued her own memo to Google employees in response to the now-viral memo, “Google’s Ideological Echo Chamber.” Brown’s statement, obtained by Motherboard, can be found in full at the end of this article.</p>
-</blockquote>
-<p>更新于美国东部时间下午7:25 : 谷歌多元化，公平性管理部门副总Danielle Brown已经发布了她自己的备文章，用来回应这个现在在谷歌内部病毒式传播的备忘录：“谷歌的思想回声室”。Brown在原文中表达的立场可以在这片文章的底部找到。</p>
-<blockquote>
-<p>A software engineer’s 10-page screed against Google’s diversity initiatives is going viral inside the company, being shared on an internal meme network and Google+. The document’s existence was first reported by Motherboard, and Gizmodo has obtained it in full.</p>
-</blockquote>
-<p>一份由一个谷歌软件工程师所写，长达10页的有关于反对谷歌多元化的倡议文章正在谷歌内部网络和Google+中病毒式的传播。这篇文章最初在Motherboard上被发现，现在Gizmodo已经获得了完整的文章。</p>
-<blockquote>
-<p>In the memo, which is the personal opinion of a male Google employee and is titled “Google’s Ideological Echo Chamber,” the author argues that women are underrepresented in tech not because they face bias and discrimination in the workplace, but because of inherent psychological differences between men and women. “We need to stop assuming that gender gaps imply sexism,” he writes, going on to argue that Google’s educational programs for young women may be misguided.</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2017/04/24/JS算法总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/24/JS算法总结/" itemprop="url">
-                  JS算法总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-24T18:31:41+08:00">
-                2017-04-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1.3k 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  5 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前一段时间在codewars上做了一些Javascript的算法，主要是和数组方法和正则表达式有关，写篇博客来记录一下，否则这里面包含的知识真的忘得太快了。。。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/24/JS算法总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2017/04/17/计算机网络-用ping制造ip分片/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/17/计算机网络-用ping制造ip分片/" itemprop="url">
-                  计算机网络-用ping制造ip分片
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T17:25:06+08:00">
-                2017-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  218 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="任务：用ping命令制造ip分片并用wireshark捕获"><a href="#任务：用ping命令制造ip分片并用wireshark捕获" class="headerlink" title="任务：用ping命令制造ip分片并用wireshark捕获"></a>任务：用ping命令制造ip分片并用wireshark捕获</h1><h2 id="什么叫分片？"><a href="#什么叫分片？" class="headerlink" title="什么叫分片？"></a>什么叫分片？</h2><p>在ip层下面的每一种数据链路协议都规定了一个数据帧中的数据字段的最大长度，这称为最大长度单元<strong><em>MTU</em></strong>。当一个IP数据报封装成链路层的帧时，其总长度一定要小于下面数据链路层的MTU。其中，以太网的的MTU值为1500。因此我们就发一个2000长度的数据报.<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/17/计算机网络-用ping制造ip分片/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1851,7 +1853,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1864,7 +1866,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1920,7 +1922,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

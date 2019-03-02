@@ -221,6 +221,525 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2019/03/02/typescript学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/03/02/typescript学习笔记/" itemprop="url">
+                  typescript学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-02T20:27:27+08:00">
+                2019-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="什么是-Typescript"><a href="#什么是-Typescript" class="headerlink" title="什么是 Typescript"></a>什么是 Typescript</h1><p>typescript 是一个 javascript 的超集。在传统的 javascript 中，整个语言都是若类型的，而 typescript 提供了一种强类型的规范,并且实现了接口，模块化，等功能。语法上 es6 和它比较接近，如果你之前比较熟悉 es6 的话可以轻松上手。</p>
+<h1 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h1><p>在 javascript 中类型一共有，number,string,boolean,null,undefined,object。在 typescript 中又新增了一些类型</p>
+<h2 id="元组-Tuple"><a href="#元组-Tuple" class="headerlink" title="元组 Tuple"></a>元组 Tuple</h2><p>元组类型允许表示一个已知类型和元素的数组，各元素类型不必相同<br>tuple 在赋值时必须按照定义的类型，如果不符合就会报错。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> x: [<span class="built_in">number</span>, <span class="built_in">string</span>]</div><div class="line">x = [<span class="number">123</span>, <span class="string">'a'</span>]</div></pre></td></tr></table></figure>
+<p>tuple 可以通过索引来找到元素</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(x[<span class="number">0</span>].substr(<span class="number">1</span>)) <span class="comment">// OK</span></div><div class="line"><span class="built_in">console</span>.log(x[<span class="number">1</span>].substr(<span class="number">1</span>)) <span class="comment">// Error, 'number' does not have 'substr'</span></div></pre></td></tr></table></figure>
+<p>当访问一个越界的元素会用联合类型替代</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">x[<span class="number">3</span>] = <span class="string">'1'</span> <span class="comment">//ok 赋值的类型可以是number||string</span></div></pre></td></tr></table></figure>
+<h2 id="枚举-enum"><a href="#枚举-enum" class="headerlink" title="枚举 enum"></a>枚举 enum</h2><p>enum 可以给一组数值定义一些友好的编号。同时提供了 value =&gt; key 的映射关系</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 从一开始编号</span></div><div class="line"><span class="keyword">enum</span> Color &#123;</div><div class="line">  Red = <span class="number">1</span>,</div><div class="line">  Green,</div><div class="line">  Blue</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> c: Color = Color.Green</div><div class="line"><span class="keyword">let</span> a: Color = Color[<span class="number">2</span>] <span class="comment">//Green</span></div></pre></td></tr></table></figure>
+<h2 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h2><p>它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 void：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">warnUser</span>(<span class="params"></span>): <span class="title">void</span> </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'This is my warning message'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="any"><a href="#any" class="headerlink" title="any"></a>any</h2><p>表示任意类型。编程时有些时候并不清楚类型，any 这时候是个好的选择。Object 有相似的作用，但是 Object 类型的变量只是允许你给它赋任意值 - 但是却不能够在它上面调用任意的方法，即便它真的有这些方法</p>
+<h2 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h2><p>类型断言（Type Assertion）可以用来手动指定一个值的类型。有时我们并不确定数据类型，但确实需要调用一些方法，比如 tostring，这时 typescript 会报错</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLength</span>(<span class="params">something: <span class="built_in">string</span> | <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (something.length) &#123;</div><div class="line">    <span class="keyword">return</span> something.length</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> something.toString().length</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// index.ts(2,19): error TS2339: Property 'length' does not exist on type 'string | number'.</span></div><div class="line"><span class="comment">//   Property 'length' does not exist on type 'number'.</span></div><div class="line"><span class="comment">// index.ts(3,26): error TS2339: Property 'length' does not exist on type 'string | number'.</span></div><div class="line"><span class="comment">//   Property 'length' does not exist on type 'number'.</span></div></pre></td></tr></table></figure>
+<p>这时我们可以使用类型断言去强制转换他的类型，可以使用尖括号和 as 两种方法</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">;(&lt;<span class="built_in">string</span>&gt;something).length</div><div class="line">;(something <span class="keyword">as</span> <span class="built_in">string</span>).length</div></pre></td></tr></table></figure>
+<h2 id="定义类型"><a href="#定义类型" class="headerlink" title="定义类型"></a>定义类型</h2><p>typescript 允许给变量或函数返回值定义类型，如果不符合报错就会报错，这使得 js 变成强类型语言</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a:<span class="built_in">string</span> = <span class="string">''</span><span class="comment">//a必须是string类型</span></div><div class="line"><span class="keyword">let</span> b:<span class="built_in">number</span> = <span class="number">0</span></div><div class="line"><span class="keyword">let</span> c:<span class="built_in">number</span>[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]<span class="comment">//数字数组</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a:<span class="built_in">string</span>,b:<span class="built_in">number</span></span>):<span class="title">string</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> a+b</div><div class="line">&#125;</div><div class="line"><span class="comment">//接受数字和字符类型的参数，返回一个字符类型</span></div></pre></td></tr></table></figure>
+<p>##接口<br>typescript 的接口可以规定你的代码遵守的一个规则</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> Person &#123;</div><div class="line">    name:<span class="built_in">string</span>;</div><div class="line">    age:<span class="built_in">number</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> renkosky:Person = &#123;</div><div class="line">    name:<span class="string">'renko'</span>;</div><div class="line">    age:<span class="number">18</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Person 会约束创建的变量二者的形状必须一致，也就是必须包含 name,age 两个属性，并且类型保持一致</p>
+<p>如果需要定义不确定的属性，可以使用问号</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> Person &#123;</div><div class="line">    name:<span class="built_in">string</span>;</div><div class="line">    age:<span class="built_in">number</span>;</div><div class="line">    sex?:<span class="built_in">string</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> renkosky:Person = &#123;</div><div class="line">    name:<span class="string">'renko'</span>;</div><div class="line">    age:<span class="number">18</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="接口约束函数类型"><a href="#接口约束函数类型" class="headerlink" title="接口约束函数类型"></a>接口约束函数类型</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> SearchFunc &#123;</div><div class="line">  (source: <span class="built_in">string</span>, subString: <span class="built_in">string</span>): <span class="built_in">boolean</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> mySearch: SearchFunc</div><div class="line">mySearch = <span class="function"><span class="keyword">function</span>(<span class="params">source: <span class="built_in">string</span>, subString: <span class="built_in">string</span></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> result = source.search(subString)</div><div class="line">  <span class="keyword">return</span> result &gt; <span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="接口约束类"><a href="#接口约束类" class="headerlink" title="接口约束类"></a>接口约束类</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> ClockInterface &#123;</div><div class="line">  currentTime: <span class="built_in">Date</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Clock <span class="keyword">implements</span> ClockInterface &#123;</div><div class="line">  currentTime: <span class="built_in">Date</span></div><div class="line">  <span class="keyword">constructor</span>(<span class="params">h: <span class="built_in">number</span>, m: <span class="built_in">number</span></span>) &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>当你不确定具体的类型时，我们会想到使用 any 来约束类型，但是有时这也满足不了我们的要求,例如我想写一个输入和返回类型都相同的函数：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>(<span class="params">arg: <span class="built_in">any</span></span>): <span class="title">any</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> arg</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>any 是任意类型，所以不能保证前后的一致性，这时我们可以使用泛型</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> arg</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> output = identity&lt;<span class="built_in">string</span>&gt;(<span class="string">'myString'</span>)</div><div class="line"><span class="keyword">let</span> output = identity(<span class="string">'myString'</span>) <span class="comment">//利用类型推论</span></div></pre></td></tr></table></figure>
+<h2 id="typescript-react"><a href="#typescript-react" class="headerlink" title="typescript+react"></a>typescript+react</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">import * as React from 'react'</div><div class="line"></div><div class="line">interface HelloProps &#123;</div><div class="line">  compiler: string</div><div class="line">  framework: string</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface HelloState &#123;</div><div class="line">  inital: string</div><div class="line">&#125;</div><div class="line"></div><div class="line">export class Hello extends React.Component&lt;HelloProps, HelloState&gt; &#123;</div><div class="line">  state: HelloState = &#123;</div><div class="line">    inital: '123'</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;h1&gt;</div><div class="line">        Hello from &#123;this.props.compiler&#125; and &#123;this.props.framework&#125;!</div><div class="line">      &lt;/h1&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2019/02/02/git内部原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/02/02/git内部原理/" itemprop="url">
+                  git内部原理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-02T16:36:01+08:00">
+                2019-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  986 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Git-是什么"><a href="#Git-是什么" class="headerlink" title="Git 是什么"></a>Git 是什么</h2><p>从根本上来讲 Git 是一套内容寻址 (content-addressable) 文件系统，在此之上提供了一个 VCS 用户界面。</p>
+<h2 id="git-目录"><a href="#git-目录" class="headerlink" title="git 目录"></a>git 目录</h2><p>当你在项目文件夹下执行 <code>git init</code>后，Git 会创建一个 .git 目录，几乎所有 Git 存储和操作的内容都位于该目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">目录结构</div><div class="line">HEAD</div><div class="line">branches/</div><div class="line">config</div><div class="line">description</div><div class="line">hooks/</div><div class="line">index</div><div class="line">info/</div><div class="line">objects/</div><div class="line">refs/</div></pre></td></tr></table></figure>
+<p>新版本的 Git 不再使用 branches 目录，description 文件仅供 GitWeb 程序使用，所以不用关心这些内容。config 文件包含了项目特有的配置选项，info 目录保存了一份不希望在 .gitignore 文件中管理的忽略模式 (ignored patterns) 的全局可执行文件。hooks 客户端或服务端钩子脚本。</p>
+<p>最关键的是以下四个目录：<br><br><code>objects</code> 目录存储所有数据内容，<code>refs</code> 目录存储指向数据 (分支) 的提交对象的指针，<code>HEAD</code> 文件指向当前分支，<code>index</code> 文件保存了暂存区域信息。马上你将详细了解 Git 是如何操纵这些内容的</p>
+<h2 id="git-中的对象"><a href="#git-中的对象" class="headerlink" title="git 中的对象"></a>git 中的对象</h2><p>Git 中有四种对象类型，分别为 blob、tree、commit 和 tag 对象类型，每个对象都有一个 SHA-1 值(指针)指向自身实例，SHA-1 是在创建对象时生成，通过这个 SHA-1 来访问对象实例，对象内容存储在.git/objects 目录。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blob 数据对象</td>
+<td>可存储较大内容的文本，可看作是操作系统中文件的内容</td>
+</tr>
+<tr>
+<td>tree 树对象</td>
+<td>可存储多个 tree 和 blob 对象，可看作是操作系统中的目录</td>
+</tr>
+<tr>
+<td>commit 提交对象</td>
+<td>可存储一个 tree 对象和其它信息(提交人、提交日期、父 commit 对象和提交说明等)</td>
+</tr>
+<tr>
+<td>tag 标签对象</td>
+<td>tag 对象存储一个 SHA-1(SHA-1 可以指向任意对象，不仅仅是 commit 对象)和 tag 创建人、创建时间、tag 说明等信息，创建 annotated(附注标签)类型标签就是在创建一个 tag 对象</td>
+</tr>
+</tbody>
+</table>
+<p>git add 和 git commit 命令时 Git 进行的工作包括保存修改了的文件的 blob，更新索引，创建 tree 对象，最后创建 commit 对象，这些 commit 对象指向了顶层 tree 对象以及先前的 commit 对象。这三类 Git 对象 ── blob，tree 以及 commit ── 都各自以文件的方式保存在 .git/objects 目录下。</p>
+<h2 id="Git-References"><a href="#Git-References" class="headerlink" title="Git References"></a>Git References</h2><p>你可以执行像 git log 1a410e 这样的命令来查看完整的历史，但必须要记住最后一次提交的 sha1 值，这样才能在提交历史中找到这些对象。你需要一个文件来用一个简单的名字来，</p>
+<p>在 Git 中，“引用”（references 或者 refs，译者注）可以记录这些 SHA-1 值。你可以在 .git/refs 目录下面找到这些包含 SHA-1 值的文件。这样你就可以用这些指针而不是原来的 SHA-1 值去检索了。</p>
+<h2 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h2><p>branch 是一类引用。HEAD 除了直接指向 commit，也可以通过指向某个 branch 来间接指向 commit。当 HEAD 指向一个 branch 时，commit 发生时，HEAD 会带着它所指向的 branch 一起移动。</p>
+<h2 id="push"><a href="#push" class="headerlink" title="push"></a>push</h2><p>实质上，push 做的事是：把当前 branch 的位置（即它指向哪个 commit）上传到远端仓库，并把它的路径上的 commits 一并上传。<br>push 的时候，如果当前分支是一个本地创建的分支，需要指定远程仓库名和分支名，用 git push origin branch_name 的格式.</p>
+<h2 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h2><p>rebase 命令与 merge 相似都可以用来合并代码。区别就在于 rebase 可以提供更线性的提交历史。<br>rebase 的意思是，给你的 commit 序列重新设置基础点（也就是父 commit）。也就是说在合并代码时，远端会设立新的起点，把本地的提交历史复制到起始点之后，这样两个分支的提交历史就不再分叉了</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/12/31/基于JWT的权限认证/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/12/31/基于JWT的权限认证/" itemprop="url">
+                  基于JWT的权限认证
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T14:04:58+08:00">
+                2018-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  16 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="token-认证的相关概念"><a href="#token-认证的相关概念" class="headerlink" title="token 认证的相关概念"></a>token 认证的相关概念</h1><h2 id="auth2-0"><a href="#auth2-0" class="headerlink" title="auth2.0"></a>auth2.0</h2><h2 id="tokenauth"><a href="#tokenauth" class="headerlink" title="tokenauth"></a>tokenauth</h2><h2 id="token-认证过程"><a href="#token-认证过程" class="headerlink" title="token 认证过程"></a>token 认证过程</h2><h2 id="node-koa"><a href="#node-koa" class="headerlink" title="node/koa"></a>node/koa</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/12/22/柯里化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -332,7 +851,7 @@
 <h2 id="实现柯里化"><a href="#实现柯里化" class="headerlink" title="实现柯里化"></a>实现柯里化</h2><p>一个常见又简单的例子</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b, c</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a + b + c</div><div class="line">&#125;</div><div class="line"><span class="comment">//curryadd</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryadd</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">b</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">c</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> a + b + c</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">curryadd(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>) <span class="comment">//6</span></div></pre></td></tr></table></figure>
 <p>通过闭包的形式把新的函数 return 出来，这种方式一看就懂，但是如果一开始不知道参数数量就没法这么写了，所以我们可以改写成这样</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">func</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>)</div><div class="line">  <span class="comment">//新建_func函数作为返回值</span></div><div class="line">  <span class="keyword">var</span> _func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//参数长度为0，执行func函数，完成该函数的功能</span></div><div class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length === <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">return</span> func.apply(<span class="keyword">this</span>, args)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">//否则，存储参数到闭包中，返回本函数</span></div><div class="line">      ;[].push.apply(args, <span class="built_in">arguments</span>)</div><div class="line">      <span class="keyword">return</span> _func</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> _func</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">func</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>)</div><div class="line">  <span class="comment">//新建_func函数作为返回值</span></div><div class="line">  <span class="keyword">var</span> _func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//参数长度为0，执行func函数，完成该函数的功能</span></div><div class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length === <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">return</span> func.apply(<span class="keyword">this</span>, args)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">//否则，存储参数到闭包中，返回本函数</span></div><div class="line">      [].push.apply(args, <span class="built_in">arguments</span>)</div><div class="line">      <span class="keyword">return</span> _func</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> _func</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>解释一下这个函数，argments 中保存着函数的参数，.length 方法可以获取到参数个数，当还有剩余参数的时候，就把参数合并，返回新函数，如果参数填入完整就调用。</p>
 <p>一个更加简洁的版本</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> curry = <span class="function"><span class="params">fn</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (fn.length &lt;= <span class="number">1</span>) <span class="keyword">return</span> fn</div><div class="line">  <span class="keyword">const</span> generator = <span class="function"><span class="params">args</span> =&gt;</span></div><div class="line">    args.length === fn.length ? fn(...args) : <span class="function"><span class="params">arg</span> =&gt;</span> generator([...args, arg])</div><div class="line">  <span class="keyword">return</span> generator([], fn.length)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -1367,479 +1886,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/06/18/函数防抖与节流/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/06/18/函数防抖与节流/" itemprop="url">
-                  函数防抖与节流
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-18T22:38:27+08:00">
-                2018-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1.3k 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  5 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h2><blockquote>
-<p>函数防抖就是让某个函数在上一次执行后，满足等待某个时间内不再触发此函数后再执行，而在这个等待时间内再次触发此函数，等待时间会重新计算。</p>
-</blockquote>
-<p>当用户在进行一系列的操作的时候例如输入一串字符，这时如果需求中需要我们去按照用户的输入做请求，比如联想输入时，有可能就会导致多次函数的调用，而事实上我们只需要最后的那个值去发请求，函数防抖就可以解决这个问题。</p>
-<h3 id="undersource-js"><a href="#undersource-js" class="headerlink" title="undersource.js"></a>undersource.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">_.debounce = <span class="function"><span class="keyword">function</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> timeout, args, context, timestamp, result</div><div class="line"></div><div class="line">  <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> last = _.now() - timestamp <span class="comment">//_.now(),一个优化的方式来获得一个当前时间的整数时间戳</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> (last &lt; wait &amp;&amp; last &gt;= <span class="number">0</span>) &#123;</div><div class="line">      timeout = setTimeout(later, wait - last)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      timeout = <span class="literal">null</span></div><div class="line">      <span class="keyword">if</span> (!immediate) &#123;</div><div class="line">        result = func.apply(context, args)</div><div class="line">        <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    context = <span class="keyword">this</span></div><div class="line">    args = <span class="built_in">arguments</span></div><div class="line">    timestamp = _.now()</div><div class="line">    <span class="keyword">var</span> callNow = immediate &amp;&amp; !timeout</div><div class="line">    <span class="keyword">if</span> (!timeout) timeout = setTimeout(later, wait)</div><div class="line">    <span class="keyword">if</span> (callNow) &#123;</div><div class="line">      result = func.apply(context, args)</div><div class="line">      context = args = <span class="literal">null</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> result</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>源码中 debounce 函数中的 later 是 setTimeout 中的回调函数，last 是调用后过了多少时间，如果 last 比 await 小就递归调用 later，等待时间重新计算。<br>如果设置了 immediate 就会立即触发一次函数，之后再计算时间。</p>
-<h3 id="另一种实现"><a href="#另一种实现" class="headerlink" title="另一种实现"></a>另一种实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这个是用来获取当前时间戳的</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">now</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> +<span class="keyword">new</span> <span class="built_in">Date</span>()</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 防抖函数，返回函数连续调用时，空闲时间必须大于或等于 wait，func 才会执行</div><div class="line"> *</div><div class="line"> * @param  &#123;function&#125; func        回调函数</div><div class="line"> * @param  &#123;number&#125;   wait        表示时间窗口的间隔</div><div class="line"> * @param  &#123;boolean&#125;  immediate   设置为ture时，是否立即调用函数</div><div class="line"> * @return &#123;function&#125;             返回客户调用函数</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait = <span class="number">50</span>, immediate = true</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> timer, context, args</div><div class="line"></div><div class="line">  <span class="comment">// 延迟执行函数</span></div><div class="line">  <span class="keyword">const</span> later = <span class="function"><span class="params">()</span> =&gt;</span></div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      <span class="comment">// 延迟函数执行完毕，清空缓存的定时器序号</span></div><div class="line">      timer = <span class="literal">null</span></div><div class="line">      <span class="comment">// 延迟执行的情况下，函数会在延迟函数中执行</span></div><div class="line">      <span class="comment">// 使用到之前缓存的参数和上下文</span></div><div class="line">      <span class="keyword">if</span> (!immediate) &#123;</div><div class="line">        func.apply(context, args)</div><div class="line">        context = args = <span class="literal">null</span></div><div class="line">      &#125;</div><div class="line">    &#125;, wait)</div><div class="line"></div><div class="line">  <span class="comment">// 这里返回的函数是每次实际调用的函数</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">...params</span>) </span>&#123;</div><div class="line">    <span class="comment">// 如果没有创建延迟执行函数（later），就创建一个</span></div><div class="line">    <span class="keyword">if</span> (!timer) &#123;</div><div class="line">      timer = later()</div><div class="line">      <span class="comment">// 如果是立即执行，调用函数</span></div><div class="line">      <span class="comment">// 否则缓存参数和调用上下文</span></div><div class="line">      <span class="keyword">if</span> (immediate) &#123;</div><div class="line">        func.apply(<span class="keyword">this</span>, params)</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        context = <span class="keyword">this</span></div><div class="line">        args = params</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 如果已有延迟执行函数（later），调用的时候清除原来的并重新设定一个</span></div><div class="line">      <span class="comment">// 这样做延迟函数会重新计时</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      clearTimeout(timer)</div><div class="line">      timer = later()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h2><blockquote>
-<p>函数节流就是让某个函数每间隔一段时间执行防止多次调用</p>
-</blockquote>
-<p>简单版本</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">method, context,wait=<span class="number">100</span></span>) </span>&#123;</div><div class="line">    clearTimeout(methor.tId);</div><div class="line">    method.tId = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        method.call(context);</div><div class="line">    &#125;， wait);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * underscore 节流函数，返回函数连续调用时，func 执行频率限定为 次 / wait</div><div class="line"> *</div><div class="line"> * @param  &#123;function&#125;   func      回调函数</div><div class="line"> * @param  &#123;number&#125;     wait      表示时间窗口的间隔</div><div class="line"> * @param  &#123;object&#125;     options   如果想忽略开始函数的的调用，传入&#123;leading: false&#125;。</div><div class="line"> *                                如果想忽略结尾函数的调用，传入&#123;trailing: false&#125;</div><div class="line"> *                                两者不能共存，否则函数不能执行</div><div class="line"> * @return &#123;function&#125;             返回客户调用函数</div><div class="line"> */</div><div class="line">_.throttle = <span class="function"><span class="keyword">function</span>(<span class="params">func, wait, options</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> context, args, result</div><div class="line">  <span class="keyword">var</span> timeout = <span class="literal">null</span></div><div class="line">  <span class="comment">// 之前的时间戳</span></div><div class="line">  <span class="keyword">var</span> previous = <span class="number">0</span></div><div class="line">  <span class="comment">// 如果 options 没传则设为空对象</span></div><div class="line">  <span class="keyword">if</span> (!options) options = &#123;&#125;</div><div class="line">  <span class="comment">// 定时器回调函数</span></div><div class="line">  <span class="keyword">var</span> later = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 如果设置了 leading，就将 previous 设为 0</span></div><div class="line">    <span class="comment">// 用于下面函数的第一个 if 判断</span></div><div class="line">    previous = options.leading === <span class="literal">false</span> ? <span class="number">0</span> : _.now()</div><div class="line">    <span class="comment">// 置空一是为了防止内存泄漏，二是为了下面的定时器判断</span></div><div class="line">    timeout = <span class="literal">null</span></div><div class="line">    result = func.apply(context, args)</div><div class="line">    <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 获得当前时间戳</span></div><div class="line">    <span class="keyword">var</span> now = _.now()</div><div class="line">    <span class="comment">// 首次进入前者肯定为 true</span></div><div class="line">    <span class="comment">// 如果需要第一次不执行函数</span></div><div class="line">    <span class="comment">// 就将上次时间戳设为当前的</span></div><div class="line">    <span class="comment">// 这样在接下来计算 remaining 的值时会大于0</span></div><div class="line">    <span class="keyword">if</span> (!previous &amp;&amp; options.leading === <span class="literal">false</span>) previous = now</div><div class="line">    <span class="comment">// 计算剩余时间</span></div><div class="line">    <span class="keyword">var</span> remaining = wait - (now - previous)</div><div class="line">    context = <span class="keyword">this</span></div><div class="line">    args = <span class="built_in">arguments</span></div><div class="line">    <span class="comment">// 如果当前调用已经大于上次调用时间 + wait</span></div><div class="line">    <span class="comment">// 或者用户手动调了时间</span></div><div class="line">    <span class="comment">// 如果设置了 trailing，只会进入这个条件</span></div><div class="line">    <span class="comment">// 如果没有设置 leading，那么第一次会进入这个条件</span></div><div class="line">    <span class="comment">// 还有一点，你可能会觉得开启了定时器那么应该不会进入这个 if 条件了</span></div><div class="line">    <span class="comment">// 其实还是会进入的，因为定时器的延时</span></div><div class="line">    <span class="comment">// 并不是准确的时间，很可能你设置了2秒</span></div><div class="line">    <span class="comment">// 但是他需要2.2秒才触发，这时候就会进入这个条件</span></div><div class="line">    <span class="keyword">if</span> (remaining &lt;= <span class="number">0</span> || remaining &gt; wait) &#123;</div><div class="line">      <span class="comment">// 如果存在定时器就清理掉否则会调用二次回调</span></div><div class="line">      <span class="keyword">if</span> (timeout) &#123;</div><div class="line">        clearTimeout(timeout)</div><div class="line">        timeout = <span class="literal">null</span></div><div class="line">      &#125;</div><div class="line">      previous = now</div><div class="line">      result = func.apply(context, args)</div><div class="line">      <span class="keyword">if</span> (!timeout) context = args = <span class="literal">null</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!timeout &amp;&amp; options.trailing !== <span class="literal">false</span>) &#123;</div><div class="line">      <span class="comment">// 判断是否设置了定时器和 trailing</span></div><div class="line">      <span class="comment">// 没有的话就开启一个定时器</span></div><div class="line">      <span class="comment">// 并且不能不能同时设置 leading 和 trailing</span></div><div class="line">      timeout = setTimeout(later, remaining)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/27/深拷贝浅拷贝/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/03/27/深拷贝浅拷贝/" itemprop="url">
-                  深拷贝浅拷贝
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:31:58+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  324 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>JavaScript中，基本类型以及引用类型的值存储方式是不一样的，基本类型的值保存在栈中。而引用类型的值保存在堆中，并在栈中保存一个指向堆的地址。因而在复制中，直接用等号复制引用类型的值只能复制地址，如果修改复制的变量也会影响原变量。如果新开辟一块内存，把引用类型中所有属性复制过去，这种拷贝就是深拷贝，否则就是浅拷贝。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/深拷贝浅拷贝/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/15/JavaScript异步/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Renko">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Renkosky's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/03/15/JavaScript异步/" itemprop="url">
-                  JavaScript异步
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T15:49:20+08:00">
-                2018-03-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1k 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  3 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Javascript单线程"><a href="#Javascript单线程" class="headerlink" title="Javascript单线程"></a>Javascript单线程</h1><p>JavaScript作为一种脚本语言，其本身是单线程的，也就是说同一时间只能做一件事。其原因是作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定JavaScript同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，就会造成错误。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/15/JavaScript异步/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1889,7 +1935,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1902,7 +1948,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1958,7 +2004,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
