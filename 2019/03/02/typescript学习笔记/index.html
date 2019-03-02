@@ -68,7 +68,7 @@
 <meta property="og:url" content="http://renkosky.me/2019/03/02/typescript学习笔记/index.html">
 <meta property="og:site_name" content="Renkosky's Home">
 <meta property="og:description" content="什么是 Typescripttypescript 是一个 javascript 的超集。在传统的 javascript 中，整个语言都是若类型的，而 typescript 提供了一种强类型的规范,并且实现了接口，模块化，等功能。语法上 es6 和它比较接近，如果你之前比较熟悉 es6 的话可以轻松上手。 基本类型在 javascript 中类型一共有，number,string,boolean,n">
-<meta property="og:updated_time" content="2019-03-02T12:28:08.217Z">
+<meta property="og:updated_time" content="2019-03-02T14:28:36.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="typescript学习笔记">
 <meta name="twitter:description" content="什么是 Typescripttypescript 是一个 javascript 的超集。在传统的 javascript 中，整个语言都是若类型的，而 typescript 提供了一种强类型的规范,并且实现了接口，模块化，等功能。语法上 es6 和它比较接近，如果你之前比较熟悉 es6 的话可以轻松上手。 基本类型在 javascript 中类型一共有，number,string,boolean,n">
@@ -328,6 +328,7 @@
       
         <h1 id="什么是-Typescript"><a href="#什么是-Typescript" class="headerlink" title="什么是 Typescript"></a>什么是 Typescript</h1><p>typescript 是一个 javascript 的超集。在传统的 javascript 中，整个语言都是若类型的，而 typescript 提供了一种强类型的规范,并且实现了接口，模块化，等功能。语法上 es6 和它比较接近，如果你之前比较熟悉 es6 的话可以轻松上手。</p>
 <h1 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h1><p>在 javascript 中类型一共有，number,string,boolean,null,undefined,object。在 typescript 中又新增了一些类型</p>
+<a id="more"></a>
 <h2 id="元组-Tuple"><a href="#元组-Tuple" class="headerlink" title="元组 Tuple"></a>元组 Tuple</h2><p>元组类型允许表示一个已知类型和元素的数组，各元素类型不必相同<br>tuple 在赋值时必须按照定义的类型，如果不符合就会报错。</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> x: [<span class="built_in">number</span>, <span class="built_in">string</span>]</div><div class="line">x = [<span class="number">123</span>, <span class="string">'a'</span>]</div></pre></td></tr></table></figure>
 <p>tuple 可以通过索引来找到元素</p>
