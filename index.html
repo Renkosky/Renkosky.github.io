@@ -333,7 +333,7 @@
 <p> 这是类型检查做的事情，遇到类型安全问题会在编译时报错。但是这种类型安全的限制也不能太死板，有的时候需要一些变通，比如子类型是可以赋值给父类型的变量的，可以完全当成父类型来使用，也就是“型变”（类型改变）。这种“型变”分为两种，一种是子类型可以赋值给父类型，叫做协变，一种是父类型可以赋值给子类型，叫做逆变。</p>
 <h2 id="协变"><a href="#协变" class="headerlink" title="协变"></a>协变</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Chen &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">  hobbies: <span class="built_in">string</span>[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person: Person;</span><br><span class="line"><span class="keyword">let</span> chen: Chen = &#123; name: <span class="string">"czt"</span>, age: <span class="number">26</span>, hobbies: [<span class="string">"coding"</span>, <span class="string">"game"</span>] &#125;;</span><br><span class="line"></span><br><span class="line">person = chen;</span><br></pre></td></tr></table></figure>
 <p>↑ chen是person的子类型所以可以赋值给person</p>
-<p>这种子类型可以赋值给父类型的情况就叫做协变。<br>
+<p>这种子类型可以赋值给父类型的情况就叫做协变。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2022/10/02/Typescript的逆变协变于不变/#more" rel="contents">
@@ -343,7 +343,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     <div>
       
