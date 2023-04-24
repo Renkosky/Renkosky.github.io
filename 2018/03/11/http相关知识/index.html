@@ -1,0 +1,833 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="HTTP,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="HTTP 报文HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http相关知识">
+<meta property="og:url" content="http://renkosky.me/2018/03/11/http相关知识/index.html">
+<meta property="og:site_name" content="Renkosky&#39;s Home">
+<meta property="og:description" content="HTTP 报文HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-02T04:15:28.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http相关知识">
+<meta name="twitter:description" content="HTTP 报文HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。 报文的组成部分 起始行 头部 主体">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://renkosky.me/2018/03/11/http相关知识/">
+
+
+
+
+
+  <title> http相关知识 | Renkosky's Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Renkosky's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">在程序员间我能画画，在画师间我会写代码，在程序员与画师两届,我唱歌最好听(··)</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/11/http相关知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                http相关知识
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T14:20:21+08:00">
+                2018-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  7 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="HTTP-报文"><a href="#HTTP-报文" class="headerlink" title="HTTP 报文"></a>HTTP 报文</h1><p>HTTP 报文是在 HTTP 应用程序之间发送的数据块。和谐数据块以以西文本形式的元信息开头，这些信息描述了报文的内容及含义，后面跟着可选的数据部分。</p>
+<h2 id="报文的组成部分"><a href="#报文的组成部分" class="headerlink" title="报文的组成部分"></a>报文的组成部分</h2><ul>
+<li>起始行</li>
+<li>头部</li>
+<li>主体<a id="more"></a>
+</li>
+</ul>
+<h3 id="起始行"><a href="#起始行" class="headerlink" title="起始行"></a>起始行</h3><ul>
+<li>请求行：请求报文的起始行，其中包含了一个方法和一个请求 url</li>
+<li>响应行：响应报文的起始行，包含响应报文使用的 http 版本，状态码，描述操作状态的文本形式的原因短句</li>
+</ul>
+<h3 id="首部"><a href="#首部" class="headerlink" title="首部"></a>首部</h3><p>http 首部字段向请求和响应报文添加了一些附加信息。首部有以下分类：</p>
+<ul>
+<li>通用首部：可以出现在请求或响应报文中</li>
+<li>请求首部：提供更多有关请求的信息</li>
+<li>响应首部：提供更多有关响应的信息</li>
+<li>实体首部：描述主体的长都和内容，或者资源自身。</li>
+<li>扩展首部：规范中没有定义</li>
+</ul>
+<p>常见首部实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Date:Tue,3Oct 1997 02:16:03 GMT //服务器产生响应的日期</span><br><span class="line">Content-length：15040           //实体的主体部分包含了一个15040字节的数据</span><br><span class="line">Content-type：image/gif         //实体的主体是一个gif图</span><br><span class="line">Accept： image/gif，image/jpeg， text/html //客户端可以接收GIF，JPEG和HTML</span><br></pre></td></tr></table></figure>
+<h3 id="实体的主体部分"><a href="#实体的主体部分" class="headerlink" title="实体的主体部分"></a>实体的主体部分</h3><p>实体的主体是 HTTP 报文的负荷。可以承载图片，视频，HTML 文档，软件应用程序，邮件等。</p>
+<h2 id="首部详解"><a href="#首部详解" class="headerlink" title="首部详解"></a>首部详解</h2><h3 id="General-Header-通用首部"><a href="#General-Header-通用首部" class="headerlink" title="General Header 通用首部"></a>General Header 通用首部</h3><p>general header 是 request、response 都可用的, 但是不能用于 entity.以下为通用的信息首部</p>
+<ul>
+<li>Request URL: 请求地址</li>
+<li>Request Method: 请求方法</li>
+<li>Status Code: 状态码</li>
+<li>Remote Address: 路由地址</li>
+<li>Referrer Policy: 用于过滤 Referrer 报头内容有以下值</li>
+<li>no-referrer-when-downgrade<br>当发生降级（比如从 https:// 跳转到 http:// ）时，不传递 Referrer 报头。但是反过来的话不受影响。通常也会当作浏览器的默认安全策略。</li>
+<li>same-origin 同源，即当协议、域名和端口（如果有一方指定的话）都相同，才会传递 Referrer。</li>
+</ul>
+<h3 id="Request-Header-请求首部"><a href="#Request-Header-请求首部" class="headerlink" title="Request Header 请求首部"></a>Request Header 请求首部</h3><p>request-header fields 允许客户端传递关于 request 和客户端的附加信息到服务端</p>
+<ul>
+<li>Accept： 告诉服务器能发送哪些媒体类型</li>
+<li>Accept-Charset： 告诉服务器能发送</li>
+<li>Accept-Encoding： 告诉服务器能发送哪些编码方式</li>
+<li>Accept-Language： 告诉服务器能发送哪些语言</li>
+<li>Host：发送请求的域</li>
+<li>If-Modified-Since： 除非在某个指定日期后资源被修改过，否则就限制这个请求</li>
+<li><p>If-None-Match ：如果提供的实体标记（etag）与当前文档的实体标记不符合，则请求文档</p>
+<blockquote>
+<p>1)请求(客户端-&gt;服务端[request])</p>
+</blockquote>
+<pre><code>GET(请求的方式) /newcoder/hello.html(请求的目标资源) HTTP/1.1(请求采用的协议和版本号)
+
+Accept: */*(客户端能接收的资源类型)
+Accept-Language: en-us(客户端接收的语言类型)
+Connection: Keep-Alive(维护客户端和服务端的连接关系)
+Host: localhost:8080(连接的目标主机和端口号)
+Referer: http://localhost/links.asp(告诉服务器我来自于哪里)
+User-Agent: Mozilla/4.0(客户端版本号的名字)
+Accept-Encoding: gzip, deflate(客户端能接收的压缩数据的类型)
+If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT(缓存时间)
+Cookie(客户端暂存服务端的信息)
+Date: Tue, 11 Jul 2000 18:23:51 GMT(客户端请求服务端的时间)
+</code></pre></li>
+</ul>
+<h3 id="Response-Header-响应首部"><a href="#Response-Header-响应首部" class="headerlink" title="Response Header 响应首部"></a>Response Header 响应首部</h3><ul>
+<li>access-control-allow-origin:*</li>
+<li>age: 当代理服务器用自己缓存的实体去响应请求时，用该头部表明该实体从产生到现在经过多长时间了。</li>
+<li>cache-control: 服务器应遵循的缓存机制。<ul>
+<li>public(可以用 Cached 内容回应任何用户)</li>
+<li>private（只能用缓存内容回应先前请求该内容的那个用户）</li>
+<li>no-cache（可以缓存，但是只有在跟 WEB 服务器验证了其有效后，才能返回给客户端）</li>
+<li>max-age = xxx：（本响应包含的对象的过期时间）</li>
+<li>ALL: no-store（不允许缓存）</li>
+</ul>
+</li>
+<li>Expires：缓存过期过期时间</li>
+<li>content-encoding</li>
+<li>content-type</li>
+<li><p>date</p>
+<blockquote>
+<p>2)响应(服务端-&gt;客户端[response])</p>
+</blockquote>
+<pre><code>HTTP/1.1(响应采用的协议和版本号) 200(状态码) OK(描述信息)
+Location: http://www.baidu.com(服务端需要客户端访问的页面路径)
+Server:apache tomcat(服务端的Web服务端名)
+Content-Encoding: gzip(服务端能够发送压缩编码类型)
+Content-Length: 80(服务端发送的压缩数据的长度)
+Content-Language: zh-cn(服务端发送的语言类型)
+Content-Type: text/html; charset=GB2312(服务端发送的类型及采用的编码方式)
+Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT(服务端对该资源最后修改的时间)
+Refresh: 1;url=http://www.it315.org(服务端要求客户端1秒钟后，刷新，然后访问指定的页面路径)
+Content-Disposition: attachment; filename=aaa.zip(服务端要求客户端以下载文件的方式打开该文件)
+Transfer-Encoding: chunked(分块传递数据到客户端）
+Set-Cookie:SS=Q0=5Lb_nQ; path=/search(服务端发送到客户端的暂存数据)
+Expires: -1//3种(服务端禁止客户端缓存页面数据)
+Cache-Control: no-cache(服务端禁止客户端缓存页面数据)
+Pragma: no-cache(服务端禁止客户端缓存页面数据)
+Connection: close(1.0)/(1.1)Keep-Alive(维护客户端和服务端的连接关系)
+Date: Tue, 11 Jul 2000 18:23:51 GMT(服务端响应客户端的时间)
+</code></pre></li>
+</ul>
+<p>Expires/Cache-Control Header 是控制浏览器是否直接从浏览器缓存取数据还是重新发请求到服务器取数据。只是 Cache-Control 比 Expires 可以控制的多一些， 而且 Cache-Control 会重写 Expires 的规则。</p>
+<p>Last-Modified/If-Modified-Since 和 ETag/If-None-Match 是浏览器发送请求到服务器后判断文件是否 已经修改过，如果没有修改过就只发送一个 304 回给浏览器，告诉浏览器直接从自己本地的缓存取数据；如果修改过那就整个数据重新发给浏览器。</p>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><h3 id="200-299-成功状态码"><a href="#200-299-成功状态码" class="headerlink" title="200~299 成功状态码"></a>200~299 成功状态码</h3><ul>
+<li>200： OK</li>
+<li>201： created 创建服务器请求</li>
+<li>202： accepted 已接受请求，未执行动作</li>
+<li>203 Non-Authoritative Information</li>
+<li>204 No Content</li>
+</ul>
+<h3 id="300-399-重定向状态码"><a href="#300-399-重定向状态码" class="headerlink" title="300~399 重定向状态码"></a>300~399 重定向状态码</h3><ul>
+<li>300: Multiple Choices 客户端请求一个实际指向多个资源的 URL 时会返回这个状态码</li>
+<li>301: Moved Permanently 请求的 rul 已被移除时使用</li>
+<li>302: Found 与 301 类似</li>
+<li>303: See Other 告知客户端应该使用另一个 URL 来获取资源</li>
+<li>304：Not Modified 客户端可以通过所包含请首部，使其请求变成有条件的。表示资源未修改，不包括主体</li>
+<li>305：Use Proxy 必须通过一个代理访问资源，代理位置由 Location 首部给出</li>
+</ul>
+<h3 id="400-499-客户端错误状态码"><a href="#400-499-客户端错误状态码" class="headerlink" title="400~499 客户端错误状态码"></a>400~499 客户端错误状态码</h3><ul>
+<li>400：Bad Request 告知客户端发送了一个错误的请求</li>
+<li>401：Unauthorized 与适当的首部一起返回，在这些首部中请求客户端在获取对象资源的访问权之前，对自己进行认证</li>
+<li>403: Forbidden 请求被服务器拒绝了</li>
+<li>404：Not Found 服务器无法找到所请求的 URL</li>
+<li>408：Request Timeout 请求时间太长</li>
+</ul>
+<h3 id="500-599-服务器粗偶状态码"><a href="#500-599-服务器粗偶状态码" class="headerlink" title="500~599 服务器粗偶状态码"></a>500~599 服务器粗偶状态码</h3><ul>
+<li>500 Internal Server Error 服务器遇到一个妨碍它为请求提供服务的错误</li>
+<li>501 Not Implement 客户端请求超出服务器能力范围（例如不支持的方法）</li>
+<li>502 Bad Gateway 作为代理或网管使用的服务器从请求响应链中收到一个伪请求（比如无法链接到父网关）</li>
+<li>503 Service Unavailable 用来说明服务器无法为请求提供服务</li>
+<li>504 Gateway Timeout 类似 408</li>
+<li>HTTP Version Not supported 服务器收到的请求使用不受支持的协议版本</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/05/作用域链，闭包/" rel="next" title="作用域链，闭包">
+                <i class="fa fa-chevron-left"></i> 作用域链，闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/15/JavaScript异步/" rel="prev" title="JavaScript异步">
+                JavaScript异步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Renko">
+          <p class="site-author-name" itemprop="name">Renko</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="钱日天我儿子~" target="_blank">钱日天我儿子~</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-报文"><span class="nav-number">1.</span> <span class="nav-text">HTTP 报文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#报文的组成部分"><span class="nav-number">1.1.</span> <span class="nav-text">报文的组成部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起始行"><span class="nav-number">1.1.1.</span> <span class="nav-text">起始行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首部"><span class="nav-number">1.1.2.</span> <span class="nav-text">首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体的主体部分"><span class="nav-number">1.1.3.</span> <span class="nav-text">实体的主体部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首部详解"><span class="nav-number">1.2.</span> <span class="nav-text">首部详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#General-Header-通用首部"><span class="nav-number">1.2.1.</span> <span class="nav-text">General Header 通用首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-Header-请求首部"><span class="nav-number">1.2.2.</span> <span class="nav-text">Request Header 请求首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response-Header-响应首部"><span class="nav-number">1.2.3.</span> <span class="nav-text">Response Header 响应首部</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">1.3.</span> <span class="nav-text">状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#200-299-成功状态码"><span class="nav-number">1.3.1.</span> <span class="nav-text">200~299 成功状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#300-399-重定向状态码"><span class="nav-number">1.3.2.</span> <span class="nav-text">300~399 重定向状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#400-499-客户端错误状态码"><span class="nav-number">1.3.3.</span> <span class="nav-text">400~499 客户端错误状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#500-599-服务器粗偶状态码"><span class="nav-number">1.3.4.</span> <span class="nav-text">500~599 服务器粗偶状态码</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Renko</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
