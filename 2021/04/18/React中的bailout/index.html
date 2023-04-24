@@ -69,7 +69,7 @@
 <meta property="og:site_name" content="Renkosky&#39;s Home">
 <meta property="og:description" content="定义react 中的 bailout 指的是当满足一定条件是，react判断组件更新前后没有变化，则使用上次生成的fiber树来作为本次更新的 fiber。命中 bailout 逻辑后将不会出发 render Fiber在 React15 及以前，Reconciler 采用递归的方式创建虚拟 DOM，递归过程是不能中断的。如果组件树的层级很深，递归会占用线程很多时间，造成卡顿。  为了解决这个问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-04-18T08:23:37.629Z">
+<meta property="og:updated_time" content="2023-04-24T13:43:24.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React中的bailout">
 <meta name="twitter:description" content="定义react 中的 bailout 指的是当满足一定条件是，react判断组件更新前后没有变化，则使用上次生成的fiber树来作为本次更新的 fiber。命中 bailout 逻辑后将不会出发 render Fiber在 React15 及以前，Reconciler 采用递归的方式创建虚拟 DOM，递归过程是不能中断的。如果组件树的层级很深，递归会占用线程很多时间，造成卡顿。  为了解决这个问题">
@@ -335,9 +335,8 @@
 <h2 id="bailout-条件"><a href="#bailout-条件" class="headerlink" title="bailout 条件"></a>bailout 条件</h2><p>同时满足以下 4 点后，会进入 bailout 逻辑</p>
 <h3 id="1-oldProps-newProps"><a href="#1-oldProps-newProps" class="headerlink" title="1. oldProps !== newProps"></a>1. oldProps !== newProps</h3><p>props 中的每一个属性都没有变化，引用是全新的。</p>
 <h3 id="2-context-的-value-没有变化"><a href="#2-context-的-value-没有变化" class="headerlink" title="2. context 的 value 没有变化"></a>2. context 的 value 没有变化</h3><h3 id="3-workInProgress-type-current-type"><a href="#3-workInProgress-type-current-type" class="headerlink" title="3. workInProgress.type === current.type"></a>3. workInProgress.type === current.type</h3><p>更新前后 fiber.type 是否变化，比如 div 是否变为 p</p>
-<h3 id="4-includesSomeLane-renderLanes-updateLanes"><a href="#4-includesSomeLane-renderLanes-updateLanes" class="headerlink" title="4. !includesSomeLane(renderLanes, updateLanes)"></a>4. !includesSomeLane(renderLanes, updateLanes)</h3><p>当前 fiber 上是否存在更新，如果存在那么更新的优先级是否和本次整棵 fiber 树调度的优先级一致？</p>
-<p>如果一致则进入 render 逻辑。</p>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MzkzMjIxNTcyMA==&amp;mid=2247485264&amp;idx=1&amp;sn=57dcf2fa177e0ae92a754176452139f5&amp;chksm=c25e6997f529e081c2b27fec875a9b23ee6b24b7657e6f9bbc54ee72e6ea5a8e16947f916b66&amp;token=296021054&amp;lang=zh_CN#rd" target="_blank" rel="noopener">demo 链接</a></p>
+<h3 id="4-includesSomeLane-renderLanes-updateLanes"><a href="#4-includesSomeLane-renderLanes-updateLanes" class="headerlink" title="4. !includesSomeLane(renderLanes, updateLanes)"></a>4. !includesSomeLane(renderLanes, updateLanes)</h3><p>当前 fiber 上是否存在更新，如果存在那么更新的优先级是否和本次整棵 fiber 树调度的优先级一致,如果一致则进入 render 逻辑。</p>
+<p><a href="https://codesandbox.io/s/quirky-chaplygin-5bx67?file=/src/App.js" target="_blank" rel="noopener">demo 链接</a></p>
 
       
     </div>
