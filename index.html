@@ -489,8 +489,7 @@
 
       
         
-          
-            <h1 id="javascript-Map-set-WeakMap-WeakSet-hash"><a href="#javascript-Map-set-WeakMap-WeakSet-hash" class="headerlink" title="javascript Map/set WeakMap/WeakSet hash"></a>javascript Map/set WeakMap/WeakSet hash</h1><h2 id="什么是-hash"><a href="#什么是-hash" class="headerlink" title="什么是 hash"></a>什么是 hash</h2><p>hash(散列，hash)指的是把任意长度的一段数据通过 Hash 算法映射到固定长度的一段域上。常见的 hash 算法有 md5，sha1 等。</p>
+          <h1 id="javascript-Map-set-WeakMap-WeakSet-hash"><a href="#javascript-Map-set-WeakMap-WeakSet-hash" class="headerlink" title="javascript Map/set WeakMap/WeakSet hash"></a>javascript Map/set WeakMap/WeakSet hash</h1><h2 id="什么是-hash"><a href="#什么是-hash" class="headerlink" title="什么是 hash"></a>什么是 hash</h2><p>hash(散列，hash)指的是把任意长度的一段数据通过 Hash 算法映射到固定长度的一段域上。常见的 hash 算法有 md5，sha1 等。</p>
 <p>好的 hash 算法的特点有：</p>
 <ol>
 <li>不可以反推原数据</li>
@@ -512,25 +511,16 @@
 <li>Map 上修改 key 对应 value 时不会覆盖原型，object 会。</li>
 <li>object 上的 key 是不可迭代的，只能使用 for in 或者 Object.keys 访问</li>
 </ol>
-<h3 id="可枚举可迭代值得是什么"><a href="#可枚举可迭代值得是什么" class="headerlink" title="可枚举可迭代值得是什么"></a>可枚举可迭代值得是什么</h3><p>可迭代对象指的是实现了 @@iterator 方法，符合了可迭代协议。一些对象例如 Array,Map 就是如此，被称为内置可迭代对象。object 则没有实现@@iterator 因此不可迭代</p>
+<h3 id="可枚举可迭代指得是什么"><a href="#可枚举可迭代指得是什么" class="headerlink" title="可枚举可迭代指得是什么"></a>可枚举可迭代指得是什么</h3><p>可迭代对象指的是实现了 @@iterator 方法，符合了可迭代协议。一些对象例如 Array,Map 就是如此，被称为内置可迭代对象。object 则没有实现@@iterator 因此不可迭代</p>
 <p>实现@@iterator 方法意味着这个对象或者它的原型上一定会有一个 key 等于@@iterator 的属性，这个属性可以用<code>Symbol.iterator</code>访问得到</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Map()[Symbol.iterator]</span><br><span class="line"><span class="comment">// ƒ entries() &#123; [native code] &#125;</span></span><br><span class="line"><span class="comment">//map的@@iterator 方法叫entries</span></span><br><span class="line"><span class="keyword">new</span> Map().entries()</span><br><span class="line"><span class="comment">// MapIterator &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-<p>当一个对象需要被迭代的时候（比如被置入一个 for…of 循环时），首先，会不带参数调用它的 @@iterator 方法，然后使用此方法返回的迭代器获得要迭代的值。</p>
-<p>值得注意的是调用此零个参数函数时，它将作为对可迭代对象的方法进行调用。 因此，在函数内部，this 关键字可用于访问可迭代对象的属性，以决定在迭代过程中提供什么。</p>
-<p>要实现迭代器协议，就必须在 Symbol.iterator 实现一个方法，方法返回了一个 next 函数，next 函数会返回一个对象包含 value 和 dome，调用.next 就可以遍历数据，并且遇到 yield 为止</p>
-<h3 id="可枚举"><a href="#可枚举" class="headerlink" title="可枚举"></a>可枚举</h3><p>可枚举属性是指那些内部 “可枚举” 标志设置为 true 的属性。对于通过直接的赋值和属性初始化的属性，该标识值(enumerable)默认为即为 true。但是对于通过 Object.defineProperty 等定义的属性，该标识值默认为 false。可枚举的属性可以通过 for…in 循环进行遍历（除非该属性名是一个 Symbol），或者通过 Object.keys()方法返回一个可枚举属性的数组。Object.getOwnPropertyNames()遍历自身对象的所有属性，包括可枚举不可枚举，但是原型上的属性是无法遍历的。</p>
-<h2 id="选择-Map-还是-object"><a href="#选择-Map-还是-object" class="headerlink" title="选择 Map 还是 object"></a>选择 Map 还是 object</h2><p>大量插入删除操作时使用 map，大量查找 object</p>
-<blockquote>
-<p>使用 Map：1.储存的键不是字符串/数字/或者 Symbol 时，选择 Map，因为 Object 并不支持 2.储存大量的数据时，选择 Map，因为它占用的内存更小 3.需要进行许多新增/删除元素的操作时，选择 Map，因为速度更快 4.需要保持插入时的顺序的话，选择 Map，因为 Object 会改变排序 5.需要迭代/遍历的话，选择 Map，因为它默认是可迭代对象，迭代更为便捷使用 Object：只是简单的数据结构时，选择 Object，因为它在数据少的时候占用内存更少，且新建时更为高效需要用到 JSON 进行文件传输时，选择 Object，因为 JSON 不默认支持 Map 需要对多个键值进行运算时，选择 Object，因为句法更为简洁需要覆盖原型上的键时，选择 Object<br>链接：<a href="https://zhuanlan.zhihu.com/p/358378689" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/358378689</a></p>
-</blockquote>
-<h2 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h2><p>WeakMap 中“weak”表示弱映射的键是“弱弱地拿着”的。意思就是，这些键不属于正式的引用， 不会阻止垃圾回收。value 的引用只要值还在则不会被垃圾回收</p>
-<p>WeakMap 内部有多少个成员，取决于垃圾回收机制有没有运行，运行前后很可能成员个数是不一样的，而垃圾回收机制何时运行是不可预测的，因此 ES6 规定 WeakMap 不可遍历。</p>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>可以看作增强 map，绝大部分差不多。但是 set 中元素不会重复</p>
-<h2 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h2><p>WeakMap 的键是弱引用，weakSet 值是弱引用会被 gc 回收</p>
-<h2 id="用-Map-实现-lruCache"><a href="#用-Map-实现-lruCache" class="headerlink" title="用 Map 实现 lruCache"></a>用 Map 实现 lruCache</h2><p>lru 的意思是最短最近使用，也就是说缓存中的数据在获取到后要把它移动到最开头，同时新插入的数据也是要按照顺序的，正好 map 就是会自动维护元素顺序</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">  cache = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">  capacity</span><br><span class="line">  <span class="comment">//capacity是缓存的大小</span></span><br><span class="line">  <span class="keyword">constructor</span>(capacity) &#123;</span><br><span class="line">    <span class="keyword">this</span>.capacity = capacity</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span>(key) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.cache &amp;&amp; <span class="keyword">this</span>.cache.has(key)) &#123;</span><br><span class="line">      <span class="keyword">const</span> val = <span class="keyword">this</span>.cache.get(key)</span><br><span class="line">      <span class="keyword">this</span>.cache.delete(key)</span><br><span class="line">      <span class="keyword">this</span>.put([key, val])</span><br><span class="line">      <span class="keyword">return</span> val</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  put(key, val) &#123;</span><br><span class="line">    <span class="keyword">if</span> (key &amp;&amp; val) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.cache.has(key)) &#123;</span><br><span class="line">        <span class="keyword">this</span>.cache.delete(key)</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.cache.size &gt;= <span class="keyword">this</span>.capacity) &#123;</span><br><span class="line">        <span class="keyword">this</span>.cache.delete(<span class="keyword">this</span>.cache.keys().next().value)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.cache) &#123;</span><br><span class="line">        <span class="keyword">this</span>.cache.set(key, val)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/04/01/MapSetHash/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
