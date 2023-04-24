@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Javascript,">
+  <meta name="keywords" content="-Typescript,">
 
 
 
@@ -61,18 +61,18 @@
 
 
 
-<meta name="description" content="定义JavaScript中，基本类型以及引用类型的值存储方式是不一样的，基本类型的值保存在栈中。而引用类型的值保存在堆中，并在栈中保存一个指向堆的地址。因而在复制中，直接用等号复制引用类型的值只能复制地址，如果修改复制的变量也会影响原变量。如果新开辟一块内存，把引用类型中所有属性复制过去，这种拷贝就是深拷贝，否则就是浅拷贝。">
-<meta name="keywords" content="Javascript">
+<meta name="description" content="TypeScript 给 JavaScript 添加了一套静态类型系统，是为了保证类型安全的，也就是保证变量只能赋同类型的值，对象只能访问它有的属性、方法。  比如 number 类型的值不能赋值给 boolean 类型的变量，Date 类型的对象就不能调用 exec 方法。  这是类型检查做的事情，遇到类型安全问题会在编译时报错。但是这种类型安全的限制也不能太死板，有的时候需要一些变通，比如子">
+<meta name="keywords" content="-Typescript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深拷贝浅拷贝">
-<meta property="og:url" content="http://renkosky.me/2018/03/27/深拷贝浅拷贝/index.html">
+<meta property="og:title" content="Typescript的逆变协变于不变">
+<meta property="og:url" content="http://renkosky.me/2022/10/02/Typescript的逆变协变于不变/index.html">
 <meta property="og:site_name" content="Renkosky&#39;s Home">
-<meta property="og:description" content="定义JavaScript中，基本类型以及引用类型的值存储方式是不一样的，基本类型的值保存在栈中。而引用类型的值保存在堆中，并在栈中保存一个指向堆的地址。因而在复制中，直接用等号复制引用类型的值只能复制地址，如果修改复制的变量也会影响原变量。如果新开辟一块内存，把引用类型中所有属性复制过去，这种拷贝就是深拷贝，否则就是浅拷贝。">
+<meta property="og:description" content="TypeScript 给 JavaScript 添加了一套静态类型系统，是为了保证类型安全的，也就是保证变量只能赋同类型的值，对象只能访问它有的属性、方法。  比如 number 类型的值不能赋值给 boolean 类型的变量，Date 类型的对象就不能调用 exec 方法。  这是类型检查做的事情，遇到类型安全问题会在编译时报错。但是这种类型安全的限制也不能太死板，有的时候需要一些变通，比如子">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-27T13:20:06.031Z">
+<meta property="og:updated_time" content="2023-04-24T13:28:42.826Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深拷贝浅拷贝">
-<meta name="twitter:description" content="定义JavaScript中，基本类型以及引用类型的值存储方式是不一样的，基本类型的值保存在栈中。而引用类型的值保存在堆中，并在栈中保存一个指向堆的地址。因而在复制中，直接用等号复制引用类型的值只能复制地址，如果修改复制的变量也会影响原变量。如果新开辟一块内存，把引用类型中所有属性复制过去，这种拷贝就是深拷贝，否则就是浅拷贝。">
+<meta name="twitter:title" content="Typescript的逆变协变于不变">
+<meta name="twitter:description" content="TypeScript 给 JavaScript 添加了一套静态类型系统，是为了保证类型安全的，也就是保证变量只能赋同类型的值，对象只能访问它有的属性、方法。  比如 number 类型的值不能赋值给 boolean 类型的变量，Date 类型的对象就不能调用 exec 方法。  这是类型检查做的事情，遇到类型安全问题会在编译时报错。但是这种类型安全的限制也不能太死板，有的时候需要一些变通，比如子">
 
 
 
@@ -100,13 +100,13 @@
 
 
 
-  <link rel="canonical" href="http://renkosky.me/2018/03/27/深拷贝浅拷贝/">
+  <link rel="canonical" href="http://renkosky.me/2022/10/02/Typescript的逆变协变于不变/">
 
 
 
 
 
-  <title> 深拷贝浅拷贝 | Renkosky's Home </title>
+  <title> Typescript的逆变协变于不变 | Renkosky's Home </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -225,7 +225,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2018/03/27/深拷贝浅拷贝/">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2022/10/02/Typescript的逆变协变于不变/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Renko">
@@ -246,7 +246,7 @@
             
             
               
-                深拷贝浅拷贝
+                Typescript的逆变协变于不变
               
             
           </h1>
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:31:58+08:00">
-                2018-03-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-02T20:31:41+08:00">
+                2022-10-02
               </time>
             
 
@@ -292,7 +292,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  324 字
+                  572 字
                 </span>
               
 
@@ -308,7 +308,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -327,10 +327,19 @@
       
 
       
-        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>JavaScript中，基本类型以及引用类型的值存储方式是不一样的，基本类型的值保存在栈中。而引用类型的值保存在堆中，并在栈中保存一个指向堆的地址。因而在复制中，直接用等号复制引用类型的值只能复制地址，如果修改复制的变量也会影响原变量。如果新开辟一块内存，把引用类型中所有属性复制过去，这种拷贝就是深拷贝，否则就是浅拷贝。<br><a id="more"></a></p>
-<h1 id="实现深拷贝"><a href="#实现深拷贝" class="headerlink" title="实现深拷贝"></a>实现深拷贝</h1><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> cloneobj = <span class="built_in">Array</span>.isArray(obj)?[]:&#123;&#125;;</span><br><span class="line">  <span class="keyword">if</span>(obj&amp;&amp;<span class="keyword">typeof</span> obj ===<span class="string">'object'</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">      <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> obj[key]===<span class="string">'object'</span>)&#123;</span><br><span class="line">          cloneobj[key] = deepCopy(obj[key]);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">          cloneobj[key] = obj[key]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> cloneobj;</span><br><span class="line">&#125;</span><br><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">b = deepCopy(a);<span class="comment">//[1,2,3,4,5]</span></span><br><span class="line">b[<span class="number">1</span>] = <span class="number">5</span>;<span class="comment">//[1,5,3,4,5]</span></span><br><span class="line">a;<span class="comment">//[1,2,3,4,5]</span></span><br></pre></td></tr></table></figure>
-<h2 id="json方法"><a href="#json方法" class="headerlink" title="json方法"></a>json方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> cloneobj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.Stringfy(obj))</span><br><span class="line">  <span class="keyword">return</span> cloneobj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="jquery-extend"><a href="#jquery-extend" class="headerlink" title="jquery extend"></a>jquery extend</h2><p>$.extend( [deep ], target, object1 [, objectN ] )<br>deep表示是否深拷贝，为true为深拷贝，为false，则为浅拷贝<br>target Object类型 目标对象，其他对象的成员属性将被附加到该对象上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a=[<span class="number">0</span>,<span class="number">1</span>,[<span class="number">2</span>,<span class="number">3</span>],<span class="number">4</span>],</span><br><span class="line">    b=$.extend(<span class="literal">true</span>,[],a);</span><br><span class="line">a[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">a[<span class="number">2</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a,b);</span><br></pre></td></tr></table></figure></p>
+        <p> TypeScript 给 JavaScript 添加了一套静态类型系统，是为了保证类型安全的，也就是保证变量只能赋同类型的值，对象只能访问它有的属性、方法。</p>
+<p> 比如 number 类型的值不能赋值给 boolean 类型的变量，Date 类型的对象就不能调用 exec 方法。</p>
+<p> 这是类型检查做的事情，遇到类型安全问题会在编译时报错。但是这种类型安全的限制也不能太死板，有的时候需要一些变通，比如子类型是可以赋值给父类型的变量的，可以完全当成父类型来使用，也就是“型变”（类型改变）。这种“型变”分为两种，一种是子类型可以赋值给父类型，叫做协变，一种是父类型可以赋值给子类型，叫做逆变。</p>
+<h2 id="协变"><a href="#协变" class="headerlink" title="协变"></a>协变</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Chen &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">  hobbies: <span class="built_in">string</span>[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person: Person;</span><br><span class="line"><span class="keyword">let</span> chen: Chen = &#123; name: <span class="string">"czt"</span>, age: <span class="number">26</span>, hobbies: [<span class="string">"coding"</span>, <span class="string">"game"</span>] &#125;;</span><br><span class="line"></span><br><span class="line">person = chen;</span><br></pre></td></tr></table></figure>
+<p>↑ chen是person的子类型所以可以赋值给person</p>
+<p>这种子类型可以赋值给父类型的情况就叫做协变。</p>
+<p>##逆变<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> printHobbies: <span class="function">(<span class="params">chen: Chen</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line"></span><br><span class="line">printHobbies = <span class="function">(<span class="params">chen</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(chen.hobbies);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> printName: <span class="function">(<span class="params">person: Person</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">printName = <span class="function">(<span class="params">person</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(person.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">printHobbies = printName;</span><br></pre></td></tr></table></figure></p>
+<p>函数的参数具有逆变的性质（而返回值是协变的，也就是子类型可以赋值给父类型）<br>但是在 ts2.x 之前支持这种赋值，也就是父类型可以赋值给子类型，子类型可以赋值给父类型，既逆变又协变，叫做“双向协变”。</p>
+<p>但是这明显是有问题的，不能保证类型安全，所以之后 ts 加了一个编译选项 strictFunctionTypes，设置为 true 就只支持函数参数的逆变，设置为 false 则是双向协变。</p>
+<p>我们把 strictFunctionTypes 关掉之后，就会发现两种赋值都可以了。</p>
+<h2 id="不变"><a href="#不变" class="headerlink" title="不变"></a>不变</h2><p>不变最简单，就是不是父子类型的两个类型赋值会报错</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Robot&#123;</span><br><span class="line">  <span class="keyword">type</span>:<span class="built_in">string</span>;</span><br><span class="line">  hasAI:<span class="built_in">Boolean</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> Chen &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  age: <span class="built_in">number</span>;</span><br><span class="line">  hobbies: <span class="built_in">string</span>[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> personA: Person</span><br><span class="line"><span class="keyword">let</span> robotA: Robot = &#123; <span class="keyword">type</span>: <span class="string">"T800"</span>, hasAI: <span class="literal">true</span> &#125;;</span><br><span class="line">personA = robotA; <span class="comment">//Type 'Robot' is missing the following properties from type 'Person': name, age</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结一句话：结构描述只能收缩且不可逆。</p>
 
       
     </div>
@@ -360,7 +369,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+            <a href="/tags/Typescript/" rel="tag"># -Typescript</a>
           
         </div>
       
@@ -373,8 +382,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/15/JavaScript异步/" rel="next" title="JavaScript异步">
-                <i class="fa fa-chevron-left"></i> JavaScript异步
+              <a href="/2021/04/18/React中的bailout/" rel="next" title="React中的bailout">
+                <i class="fa fa-chevron-left"></i> React中的bailout
               </a>
             
           </div>
@@ -382,10 +391,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/18/函数防抖与节流/" rel="prev" title="函数防抖与节流">
-                函数防抖与节流 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -503,7 +508,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现深拷贝"><span class="nav-number">2.</span> <span class="nav-text">实现深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-number">2.1.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json方法"><span class="nav-number">2.2.</span> <span class="nav-text">json方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jquery-extend"><span class="nav-number">2.3.</span> <span class="nav-text">jquery extend</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#协变"><span class="nav-number">1.</span> <span class="nav-text">协变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不变"><span class="nav-number">2.</span> <span class="nav-text">不变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
