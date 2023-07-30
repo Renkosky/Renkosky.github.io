@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="hexo,博客搭建">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Hexo博客的搭建">
+<meta name="keywords" content="hexo,博客搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次windows中Hexo博客的搭建-伪教程">
+<meta property="og:url" content="http://renkosky.me/2017/04/15/记一次windows中Hexo博客的搭建-伪教程/index.html">
+<meta property="og:site_name" content="Renkosky&#39;s Home">
+<meta property="og:description" content="Hexo博客的搭建">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oogbwnwu9.bkt.clouddn.com/291600-34e4d1af45d6f267.png">
+<meta property="og:image" content="http://oogbwnwu9.bkt.clouddn.com/hexo.png">
+<meta property="og:updated_time" content="2017-04-15T15:04:49.569Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次windows中Hexo博客的搭建-伪教程">
+<meta name="twitter:description" content="Hexo博客的搭建">
+<meta name="twitter:image" content="http://oogbwnwu9.bkt.clouddn.com/291600-34e4d1af45d6f267.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://renkosky.me/2017/04/15/记一次windows中Hexo博客的搭建-伪教程/">
+
+
+
+
+
+  <title> 记一次windows中Hexo博客的搭建-伪教程 | Renkosky's Home </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Renkosky's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">莲子的小窝</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://renkosky.me/2017/04/15/记一次windows中Hexo博客的搭建-伪教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Renko">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Renkosky's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                记一次windows中Hexo博客的搭建-伪教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T22:53:25+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  849 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  Hexo博客的搭建
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以前就想有一个个人博客，想要租一个vps一直因为价格原因没动手，偶然间了githubpage和hexo，感觉挺不错的就搭了一个，写一篇博文来记录一下。</p>
+<p>你所需要的各种：nodejs，git （这两个我用的都是最新版本）以及 github账号</p>
+<p>先在github中建立一个repo，取名 Renkosky.github.io 这是必须的格式 你的github账户名+github.io</p>
+<p>在E盘建立一个文件夹，取名RenkoBlog用来做博客的根目录，然后git bash here，用cmd应该也可以。输入：</p>
+<p> <code>npm install -g hexo-cli</code></p>
+<p>这时候碰到一个问题，npm命令下载速度不稳定，有时候非常慢，毕竟镜像是在国外的。这里有几个方法可以试试</p>
+<h3 id="1-通过-config-配置指向国内镜像源"><a href="#1-通过-config-配置指向国内镜像源" class="headerlink" title="1.通过 config 配置指向国内镜像源"></a>1.通过 config 配置指向国内镜像源</h3><blockquote>
+<p><code>npm config set registry http://registry.cnpmjs.org</code> //配置指向源<br>  <code>npm info express</code>  //下载安装第三方包</p>
+</blockquote>
+<h3 id="2-通过-npm-命令指定下载源"><a href="#2-通过-npm-命令指定下载源" class="headerlink" title="2.通过 npm 命令指定下载源"></a>2.通过 npm 命令指定下载源</h3><p><code>npm --registry http://registry.cnpmjs.org info express</code></p>
+<h3 id="3-在配置文件-npmrc-文件写入源地址"><a href="#3-在配置文件-npmrc-文件写入源地址" class="headerlink" title="3.在配置文件 ~/.npmrc 文件写入源地址"></a>3.在配置文件 ~/.npmrc 文件写入源地址</h3><p><code>nano ~/.npmrc</code>  //打开配置文件<br><code>registry =https://registry.npm.taobao.org</code>   //写入配置文件<br>写入 ~/.npmrc 可以删除配置内容.</p>
+<p>这里我挂了vpn就装上了，但也不是百分百成功率。遇到麻烦的话就几个方法都试试吧。之后输入</p>
+<p><code>$hexo</code></p>
+<p>如果出现许多命令解释例如这样（网上找的图）就说明你成功了。<br><img src="http://oogbwnwu9.bkt.clouddn.com/291600-34e4d1af45d6f267.png" alt="hexoinstall"></p>
+<h2 id="博客初始化"><a href="#博客初始化" class="headerlink" title="博客初始化"></a>博客初始化</h2><p><code>$hexo init &lt;floder&gt; // 建立一个博客文件夹，并初始化博客，&lt;floder&gt;为文件夹的名称，可以随便起名字</code></p>
+<p> <code>$cd// 进入博客文件夹，为文件夹的名称</code></p>
+<p><code>$npm install // node.js的命令，根据博客既定的dependencies配置安装所有的依赖包</code></p>
+<p>直接init 的话就在博客目录里安装了</p>
+<p>这里有一个很坑的一点 init后面的 <floder> 再输入时是<strong>不带括号</strong>的，当时一直语法错误浪费了不少时间T_T</floder></p>
+<h2 id="配置博客"><a href="#配置博客" class="headerlink" title="配置博客"></a>配置博客</h2><h3 id="1-修改网站相关信息"><a href="#1-修改网站相关信息" class="headerlink" title="1. 修改网站相关信息"></a>1. 修改网站相关信息</h3><p><code>title: //标题
+subtitle://副标题
+description://貌似是别人在网上搜索的时候用到的关键字，不显示在博客里。
+author: //你自己
+language:zh-CN
+timezone:Asia/Shanghai</code></p>
+<h3 id="2-配置统一资源定位符（个人域名）"><a href="#2-配置统一资源定位符（个人域名）" class="headerlink" title="2. 配置统一资源定位符（个人域名）"></a>2. 配置统一资源定位符（个人域名）</h3><p>url:<a href="http://Renkosky.me//买了域名要设置cname，再在这里修改。这一步我还没做">http://Renkosky.me//买了域名要设置cname，再在这里修改。这一步我还没做</a></p>
+<h3 id="3-配置部署"><a href="#3-配置部署" class="headerlink" title="3. 配置部署"></a>3. 配置部署</h3><blockquote>
+<p>deploy:<br>type: git<br>repository: <a href="https://github.com/Renkosky/Renkosky.github.io.git//这里就是你的github项目地址啦" target="_blank" rel="noopener">https://github.com/Renkosky/Renkosky.github.io.git//这里就是你的github项目地址啦</a><br>branch: master</p>
+</blockquote>
+<p>输入</p>
+<p><code>hexo new&quot;文章标题&quot;// 新建一篇文章</code></p>
+<p>我们可以在本地博客文件夹source/post文件夹下看到我们新建的markdown文件修改一下。</p>
+<blockquote>
+<p>‘title: First blog’<br>  date: 2017-04-15 01:07:23</p>
+</blockquote>
+<h2 id="tags"><a href="#tags" class="headerlink" title="  tags:"></a>  tags:</h2><p>欢迎来到莲子的小窝^_</p>
+<h2 id="本地发布"><a href="#本地发布" class="headerlink" title="本地发布"></a>本地发布</h2><p><code>$ hexoserver
+hexo server -p 5000 //如果4000端口不能用的话</code></p>
+<p>到这里的话还只是本地发布，想要更新到博客上的话需要运行下面两个命令</p>
+<p><code>$ hexogenerate</code></p>
+<p><code>$ hexo deploy</code></p>
+<p>这里有一个问题，就是hexo3.0后需要先执行下面的命令，否则执行deploy时会出现error，提示找不到git</p>
+<p><code>npm install hexo-deployer-gi</code></p>
+<p>当时执行的时候出现npm error但是之后的$ hexo deploy却成功了…至今不是很明白。</p>
+<p><img src="http://oogbwnwu9.bkt.clouddn.com/hexo.png" alt="Blog"></p>
+<p>完成~</p>
+<p>到此为止就是搭建完成了，以后两边会同时更新~~<br>简书地址：<a href="http://www.jianshu.com/u/ebcfbdeab432" target="_blank" rel="noopener">http://www.jianshu.com/u/ebcfbdeab432</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/15/First-blog/" rel="next" title="First blog">
+                <i class="fa fa-chevron-left"></i> First blog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/17/计算机网络-用ping制造ip分片/" rel="prev" title="计算机网络-用ping制造ip分片">
+                计算机网络-用ping制造ip分片 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Renko">
+          <p class="site-author-name" itemprop="name">Renko</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-通过-config-配置指向国内镜像源"><span class="nav-number">1.</span> <span class="nav-text">1.通过 config 配置指向国内镜像源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-通过-npm-命令指定下载源"><span class="nav-number">2.</span> <span class="nav-text">2.通过 npm 命令指定下载源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在配置文件-npmrc-文件写入源地址"><span class="nav-number">3.</span> <span class="nav-text">3.在配置文件 ~/.npmrc 文件写入源地址</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#博客初始化"><span class="nav-number"></span> <span class="nav-text">博客初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置博客"><span class="nav-number"></span> <span class="nav-text">配置博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-修改网站相关信息"><span class="nav-number">1.</span> <span class="nav-text">1. 修改网站相关信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置统一资源定位符（个人域名）"><span class="nav-number">2.</span> <span class="nav-text">2. 配置统一资源定位符（个人域名）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置部署"><span class="nav-number">3.</span> <span class="nav-text">3. 配置部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tags"><span class="nav-number"></span> <span class="nav-text">  tags:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地发布"><span class="nav-number"></span> <span class="nav-text">本地发布</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Renko</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
